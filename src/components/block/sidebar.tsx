@@ -1,4 +1,5 @@
-import { Headphones,Heart, Home, Library, Plus, Search } from 'lucide-react'
+import { Link } from '@tanstack/react-router'
+import { Headphones, Heart, Home, Library, Plus, Search } from 'lucide-react'
 
 import { cn } from '~/lib/utils'
 
@@ -7,17 +8,17 @@ interface SidebarProps {
 }
 
 const navItems = [
-  { icon: Home, label: 'Home', active: true },
-  { icon: Search, label: 'Search' },
-  { icon: Library, label: 'Your Library' },
+  { icon: Home, label: 'Home', href: '/', active: true },
+  { icon: Search, label: 'Search', href: '/search' },
+  { icon: Library, label: 'Your Library', href: '/library' },
 ]
 
 const playlists = [
-  'Liked Audiobooks',
-  'Self Improvement',
-  'Fiction Favorites',
-  'Mystery & Thriller',
-  'Business & Finance',
+  { name: 'Liked Audiobooks', id: 'liked-audiobooks' },
+  { name: 'Self Improvement', id: 'self-improvement' },
+  { name: 'Fiction Favorites', id: 'fiction-favorites' },
+  { name: 'Mystery & Thriller', id: 'mystery-thriller' },
+  { name: 'Business & Finance', id: 'business-finance' },
 ]
 
 export function Sidebar({ className }: SidebarProps) {
@@ -38,7 +39,8 @@ export function Sidebar({ className }: SidebarProps) {
         <ul className="space-y-1">
           {navItems.map((item) => (
             <li key={item.label}>
-              <button
+              <Link
+                to={item.href}
                 className={cn(
                   'w-full flex items-center gap-4 px-4 py-3 rounded-lg text-sm font-medium transition-all',
                   item.active
@@ -48,7 +50,7 @@ export function Sidebar({ className }: SidebarProps) {
               >
                 <item.icon className="w-5 h-5" />
                 {item.label}
-              </button>
+              </Link>
             </li>
           ))}
         </ul>
@@ -79,13 +81,16 @@ export function Sidebar({ className }: SidebarProps) {
               </button>
             </li>
             {playlists.slice(1).map((playlist) => (
-              <li key={playlist}>
-                <button className="w-full flex items-center gap-3 px-4 py-2 rounded-lg text-sm text-sidebar-foreground hover:text-foreground hover:bg-sidebar-accent/50 transition-all">
+              <li key={playlist.id}>
+                <Link
+                  to={`/playlist/${playlist.id}`}
+                  className="w-full flex items-center gap-3 px-4 py-2 rounded-lg text-sm text-sidebar-foreground hover:text-foreground hover:bg-sidebar-accent/50 transition-all"
+                >
                   <div className="w-10 h-10 rounded-md bg-secondary flex items-center justify-center">
                     <Library className="w-4 h-4 text-muted-foreground" />
                   </div>
-                  <span className="font-medium truncate">{playlist}</span>
-                </button>
+                  <span className="font-medium truncate">{playlist.name}</span>
+                </Link>
               </li>
             ))}
           </ul>

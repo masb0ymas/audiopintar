@@ -1,0 +1,306 @@
+import { createFileRoute, Link } from '@tanstack/react-router'
+import { ArrowLeft, Clock, Heart, MoreHorizontal, Play } from 'lucide-react'
+
+import Loading from '~/components/block/common/loading'
+import NotFound from '~/components/block/common/not-found'
+import { PlayerBar } from '~/components/block/player-bar'
+import { Sidebar } from '~/components/block/sidebar'
+import { Button } from '~/components/ui/button'
+
+export const Route = createFileRoute('/(home)/playlist/$id/')({
+  component: RouteComponent,
+  pendingComponent: Loading,
+  notFoundComponent: NotFound,
+})
+
+type Playlist = {
+  name: string
+  description: string
+  coverGradient: string
+  audiobooks: Array<{
+    id: string
+    title: string
+    author: string
+    duration: string
+    cover: string
+  }>
+}
+
+const playlistsData: Record<string, Playlist> = {
+  'liked-audiobooks': {
+    name: 'Liked Audiobooks',
+    description: 'Your favorite audiobooks collection',
+    coverGradient: 'from-primary/80 to-primary/20',
+    audiobooks: [
+      {
+        id: '1',
+        title: 'Atomic Habits',
+        author: 'James Clear',
+        duration: '5h 35m',
+        cover:
+          'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=300&h=300&fit=crop',
+      },
+      {
+        id: '2',
+        title: 'The Psychology of Money',
+        author: 'Morgan Housel',
+        duration: '5h 48m',
+        cover:
+          'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=300&h=300&fit=crop',
+      },
+      {
+        id: '3',
+        title: 'Deep Work',
+        author: 'Cal Newport',
+        duration: '7h 44m',
+        cover:
+          'https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?w=300&h=300&fit=crop',
+      },
+      {
+        id: '4',
+        title: 'The Midnight Library',
+        author: 'Matt Haig',
+        duration: '8h 50m',
+        cover:
+          'https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=300&h=300&fit=crop',
+      },
+    ],
+  },
+  'self-improvement': {
+    name: 'Self Improvement',
+    description: 'Books to help you grow and succeed',
+    coverGradient: 'from-green-600 to-green-900',
+    audiobooks: [
+      {
+        id: '1',
+        title: 'Atomic Habits',
+        author: 'James Clear',
+        duration: '5h 35m',
+        cover:
+          'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=300&h=300&fit=crop',
+      },
+      {
+        id: '5',
+        title: 'Think and Grow Rich',
+        author: 'Napoleon Hill',
+        duration: '9h 35m',
+        cover:
+          'https://images.unsplash.com/photo-1553729459-efe14ef6055d?w=300&h=300&fit=crop',
+      },
+      {
+        id: '3',
+        title: 'Deep Work',
+        author: 'Cal Newport',
+        duration: '7h 44m',
+        cover:
+          'https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?w=300&h=300&fit=crop',
+      },
+    ],
+  },
+  'fiction-favorites': {
+    name: 'Fiction Favorites',
+    description: 'Amazing stories that captivate your imagination',
+    coverGradient: 'from-purple-600 to-purple-900',
+    audiobooks: [
+      {
+        id: '4',
+        title: 'The Midnight Library',
+        author: 'Matt Haig',
+        duration: '8h 50m',
+        cover:
+          'https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=300&h=300&fit=crop',
+      },
+      {
+        id: '6',
+        title: 'Project Hail Mary',
+        author: 'Andy Weir',
+        duration: '16h 10m',
+        cover:
+          'https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=300&h=300&fit=crop',
+      },
+    ],
+  },
+  'mystery-thriller': {
+    name: 'Mystery & Thriller',
+    description: 'Edge-of-your-seat suspense and intrigue',
+    coverGradient: 'from-red-600 to-red-900',
+    audiobooks: [
+      {
+        id: '7',
+        title: 'The Silent Patient',
+        author: 'Alex Michaelides',
+        duration: '8h 43m',
+        cover:
+          'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=300&h=300&fit=crop',
+      },
+      {
+        id: '8',
+        title: 'Gone Girl',
+        author: 'Gillian Flynn',
+        duration: '19h 11m',
+        cover:
+          'https://images.unsplash.com/photo-1495640388908-05fa85288e61?w=300&h=300&fit=crop',
+      },
+    ],
+  },
+  'business-finance': {
+    name: 'Business & Finance',
+    description: 'Master your money and career',
+    coverGradient: 'from-blue-600 to-blue-900',
+    audiobooks: [
+      {
+        id: '2',
+        title: 'The Psychology of Money',
+        author: 'Morgan Housel',
+        duration: '5h 48m',
+        cover:
+          'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=300&h=300&fit=crop',
+      },
+      {
+        id: '5',
+        title: 'Think and Grow Rich',
+        author: 'Napoleon Hill',
+        duration: '9h 35m',
+        cover:
+          'https://images.unsplash.com/photo-1553729459-efe14ef6055d?w=300&h=300&fit=crop',
+      },
+    ],
+  },
+}
+
+function RouteComponent() {
+  const { id } = Route.useParams()
+  const playlist = playlistsData[id || 'liked-audiobooks']
+
+  if (!playlist) {
+    return (
+      <div className="flex h-screen bg-background">
+        <Sidebar />
+        <main className="flex-1 flex items-center justify-center">
+          <div className="text-center">
+            <h1 className="text-2xl font-bold text-foreground mb-4">
+              Playlist not found
+            </h1>
+            <Link to="/" className="text-primary hover:underline">
+              Go back home
+            </Link>
+          </div>
+        </main>
+      </div>
+    )
+  }
+
+  return (
+    <div className="flex h-screen bg-background">
+      <Sidebar />
+
+      <main className="flex-1 flex flex-col overflow-hidden">
+        <div className="flex-1 overflow-y-auto">
+          {/* Header with gradient */}
+          <div
+            className={`bg-gradient-to-b ${playlist.coverGradient} to-background p-8`}
+          >
+            <Link
+              to="/"
+              className="inline-flex items-center gap-2 text-foreground/70 hover:text-foreground mb-6 transition-colors"
+            >
+              <ArrowLeft className="w-5 h-5" />
+              Back
+            </Link>
+
+            <div className="flex items-end gap-6">
+              <div
+                className={`w-52 h-52 rounded-lg bg-gradient-to-br ${playlist.coverGradient} shadow-2xl flex items-center justify-center`}
+              >
+                <Heart className="w-20 h-20 text-foreground" />
+              </div>
+
+              <div className="flex-1">
+                <p className="text-sm font-medium text-foreground/70 uppercase tracking-wider">
+                  Playlist
+                </p>
+                <h1 className="text-5xl font-bold text-foreground mt-2 mb-4">
+                  {playlist.name}
+                </h1>
+                <p className="text-foreground/70 mb-4">
+                  {playlist.description}
+                </p>
+                <p className="text-sm text-foreground/50">
+                  {playlist.audiobooks.length} audiobooks
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Controls */}
+          <div className="px-8 py-6 flex items-center gap-6">
+            <Button
+              size="lg"
+              className="w-14 h-14 rounded-full bg-primary hover:bg-primary/90 hover:scale-105 transition-all"
+            >
+              <Play className="size-6 fill-primary-foreground text-primary-foreground ml-1" />
+            </Button>
+            <button className="text-foreground/50 hover:text-foreground transition-colors">
+              <Heart className="w-8 h-8" />
+            </button>
+            <button className="text-foreground/50 hover:text-foreground transition-colors">
+              <MoreHorizontal className="w-8 h-8" />
+            </button>
+          </div>
+
+          {/* Audiobook list */}
+          <div className="px-8 pb-32">
+            <table className="w-full">
+              <thead>
+                <tr className="text-foreground/50 text-sm border-b border-border">
+                  <th className="text-left font-medium pb-3 w-12">#</th>
+                  <th className="text-left font-medium pb-3">Title</th>
+                  <th className="text-left font-medium pb-3">Author</th>
+                  <th className="text-right font-medium pb-3 pr-4">
+                    <Clock className="w-4 h-4 inline" />
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {playlist.audiobooks.map((audiobook, index) => (
+                  <tr
+                    key={audiobook.id}
+                    className="group hover:bg-card/50 transition-colors cursor-pointer"
+                  >
+                    <td className="py-3 text-foreground/50 group-hover:text-foreground">
+                      <span className="group-hover:hidden">{index + 1}</span>
+                      <Play className="w-4 h-4 hidden group-hover:block fill-foreground" />
+                    </td>
+                    <td className="py-3">
+                      <Link
+                        to={audiobook.id}
+                        className="flex items-center gap-4"
+                      >
+                        <img
+                          src={audiobook.cover}
+                          alt={audiobook.title}
+                          className="w-10 h-10 rounded object-cover"
+                        />
+                        <span className="font-medium text-foreground hover:underline">
+                          {audiobook.title}
+                        </span>
+                      </Link>
+                    </td>
+                    <td className="py-3 text-foreground/70">
+                      {audiobook.author}
+                    </td>
+                    <td className="py-3 text-right text-foreground/50 pr-4">
+                      {audiobook.duration}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <PlayerBar />
+      </main>
+    </div>
+  )
+}

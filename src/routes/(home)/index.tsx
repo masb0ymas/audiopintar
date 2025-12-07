@@ -1,6 +1,8 @@
 import { createFileRoute } from '@tanstack/react-router'
 
 import { CategorySection } from '~/components/block/category-section'
+import Loading from '~/components/block/common/loading'
+import NotFound from '~/components/block/common/not-found'
 import { ContinueListening } from '~/components/block/continue-listening'
 import { Header } from '~/components/block/header'
 import { HeroSection } from '~/components/block/hero-section'
@@ -9,6 +11,8 @@ import { Sidebar } from '~/components/block/sidebar'
 
 export const Route = createFileRoute('/(home)/')({
   component: RouteComponent,
+  pendingComponent: Loading,
+  notFoundComponent: NotFound,
 })
 
 function RouteComponent() {

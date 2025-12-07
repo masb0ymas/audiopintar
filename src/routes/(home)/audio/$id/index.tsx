@@ -8,30 +8,33 @@ import {
   Star,
 } from 'lucide-react'
 
+import Loading from '~/components/block/common/loading'
+import NotFound from '~/components/block/common/not-found'
 import { PlayerBar } from '~/components/block/player-bar'
 import { Button } from '~/components/ui/button'
 
-export const Route = createFileRoute('/(home)/$id/')({
+export const Route = createFileRoute('/(home)/audio/$id/')({
   component: RouteComponent,
+  pendingComponent: Loading,
+  notFoundComponent: NotFound,
 })
 
 // Mock data - in real app, fetch by ID
-const audiobooksData: Record<
-  string,
-  {
-    title: string
-    author: string
-    cover: string
-    duration: string
-    rating: number
-    narrator: string
-    genre: string
-    releaseYear: number
-    chapters: number
-    description: string
-    aiSummary: string
-  }
-> = {
+type AudiobookData = {
+  title: string
+  author: string
+  cover: string
+  duration: string
+  rating: number
+  narrator: string
+  genre: string
+  releaseYear: number
+  chapters: number
+  description: string
+  aiSummary: string
+}
+
+const audiobooksData: Record<string, AudiobookData> = {
   '1': {
     title: 'Atomic Habits',
     author: 'James Clear',
@@ -46,7 +49,7 @@ const audiobooksData: Record<
     description:
       "No matter your goals, Atomic Habits offers a proven framework for improving—every day. James Clear, one of the world's leading experts on habit formation, reveals practical strategies that will teach you exactly how to form good habits, break bad ones, and master the tiny behaviors that lead to remarkable results. No matter your goals, Atomic Habits offers a proven framework for improving—every day. James Clear, one of the world's leading experts on habit formation, reveals practical strategies that will teach you exactly how to form good habits, break bad ones, and master the tiny behaviors that lead to remarkable results. No matter your goals, Atomic Habits offers a proven framework for improving—every day. James Clear, one of the world's leading experts on habit formation, reveals practical strategies that will teach you exactly how to form good habits, break bad ones, and master the tiny behaviors that lead to remarkable results. No matter your goals, Atomic Habits offers a proven framework for improving—every day. James Clear, one of the world's leading experts on habit formation, reveals practical strategies that will teach you exactly how to form good habits, break bad ones, and master the tiny behaviors that lead to remarkable results.",
     aiSummary:
-      "**Key Insights from Atomic Habits:**\n\n1. **The 1% Rule**: Small improvements compound over time. Getting 1% better each day results in being 37 times better by the end of the year.\n\n2. **Four Laws of Behavior Change**:\n   - Make it Obvious\n   - Make it Attractive\n   - Make it Easy\n   - Make it Satisfying\n\n3. **Identity-Based Habits**: Focus on who you want to become, not what you want to achieve. Every action is a vote for the type of person you wish to be.\n\n4. **Environment Design**: Your environment shapes your behavior more than motivation. Design your spaces to make good habits inevitable.\n\n5. **Habit Stacking**: Link new habits to existing ones using the formula: 'After I [CURRENT HABIT], I will [NEW HABIT].'\n\n**Bottom Line**: Success is the product of daily habits, not once-in-a-lifetime transformations. Focus on systems, not goals.",
+      '**Key Insights from Atomic Habits:**\n\n1. **The 1% Rule**: Small improvements compound over time. Getting 1% better each day results in being 37 times better by the end of the year.\n\n2. **Four Laws of Behavior Change**:\n   - Make it Obvious\n   - Make it Attractive\n   - Make it Easy\n   - Make it Satisfying\n\n3. **Identity-Based Habits**: Focus on who you want to become, not what you want to achieve. Every action is a vote for the type of person you wish to be.\n\n4. **Environment Design**: Your environment shapes your behavior more than motivation. Design your spaces to make good habits inevitable.\n\n5. **Habit Stacking**: Link new habits to existing ones using the formula: "After I [CURRENT HABIT], I will [NEW HABIT]."\n\n**Bottom Line**: Success is the product of daily habits, not once-in-a-lifetime transformations. Focus on systems, not goals.',
   },
   '2': {
     title: 'The Psychology of Money',
@@ -62,7 +65,7 @@ const audiobooksData: Record<
     description:
       "Doing well with money isn't necessarily about what you know. It's about how you behave. And behavior is hard to teach, even to really smart people. Morgan Housel shares 19 short stories exploring the strange ways people think about money.",
     aiSummary:
-      "**Key Insights from The Psychology of Money:**\n\n1. **No One's Crazy**: Everyone makes financial decisions based on their unique experiences. What seems irrational to you makes perfect sense to them.\n\n2. **Luck & Risk**: Success involves both skill and luck. Be humble about your wins and compassionate about others' failures.\n\n3. **Never Enough**: The hardest financial skill is getting the goalpost to stop moving. Knowing 'enough' is essential.\n\n4. **Compounding Magic**: Warren Buffett's success isn't just skill—it's time. He's been investing for 80+ years.\n\n5. **Room for Error**: Plan for things going wrong. A margin of safety is the only effective way to navigate uncertainty.\n\n**Bottom Line**: Financial success is more about behavior than intelligence. Wealth is what you don't spend.",
+      "**Key Insights from The Psychology of Money:**\n\n1. **No One's Crazy**: Everyone makes financial decisions based on their unique experiences. What seems irrational to you makes perfect sense to them.\n\n2. **Luck & Risk**: Success involves both skill and luck. Be humble about your wins and compassionate about others' failures.\n\n3. **Never Enough**: The hardest financial skill is getting the goalpost to stop moving. Knowing \\\"enough\\\" is essential.\n\n4. **Compounding Magic**: Warren Buffett's success isn't just skill—it's time. He's been investing for 80+ years.\n\n5. **Room for Error**: Plan for things going wrong. A margin of safety is the only effective way to navigate uncertainty.\n\n**Bottom Line**: Financial success is more about behavior than intelligence. Wealth is what you don't spend.",
   },
   '3': {
     title: 'Deep Work',
@@ -116,7 +119,6 @@ function RouteComponent() {
           </Link>
         </div>
       </header>
-
       {/* Content */}
       <main className="container mx-auto px-6 py-8 pb-32">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
@@ -260,7 +262,6 @@ function RouteComponent() {
           </div>
         </div>
       </main>
-
       <div className="fixed bottom-0 left-0 right-0 z-40">
         <PlayerBar />
       </div>

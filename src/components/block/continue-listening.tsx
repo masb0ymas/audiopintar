@@ -51,7 +51,7 @@ export function ContinueListening() {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {continueItems.map((item) => (
           <Link
-            to={item.id}
+            to={`/audio/${item.id}`}
             key={item.id}
             className="group flex items-center gap-4 bg-secondary/50 hover:bg-secondary rounded-lg p-3 transition-all cursor-pointer"
           >
@@ -73,7 +73,10 @@ export function ContinueListening() {
                 {item.author}
               </p>
               <div className="flex items-center gap-2">
-                <Progress value={item.progress} className="h-1 flex-1" />
+                <Progress
+                  value={item.progress}
+                  className="h-1 flex-1 group-hover:bg-neutral-700 group-hover:transition-colors duration-300"
+                />
                 <span className="text-xs text-muted-foreground whitespace-nowrap">
                   {item.timeLeft}
                 </span>

@@ -22,7 +22,7 @@ export function AudiobookCard({
 }: AudiobookCardProps) {
   return (
     <Link
-      to={id}
+      to={`/audio/${id}`}
       className={cn(
         'group relative bg-card rounded-lg p-4 transition-all duration-300 hover:bg-secondary cursor-pointer card-glow',
         className,

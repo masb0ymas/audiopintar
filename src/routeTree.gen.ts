@@ -10,43 +10,79 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as homeIndexRouteImport } from './routes/(home)/index'
-import { Route as homeIdIndexRouteImport } from './routes/(home)/$id/index'
+import { Route as homePlaylistIndexRouteImport } from './routes/(home)/playlist/index'
+import { Route as homeAudioIndexRouteImport } from './routes/(home)/audio/index'
+import { Route as homePlaylistIdIndexRouteImport } from './routes/(home)/playlist/$id/index'
+import { Route as homeAudioIdIndexRouteImport } from './routes/(home)/audio/$id/index'
 
 const homeIndexRoute = homeIndexRouteImport.update({
   id: '/(home)/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const homeIdIndexRoute = homeIdIndexRouteImport.update({
-  id: '/(home)/$id/',
-  path: '/$id/',
+const homePlaylistIndexRoute = homePlaylistIndexRouteImport.update({
+  id: '/(home)/playlist/',
+  path: '/playlist/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const homeAudioIndexRoute = homeAudioIndexRouteImport.update({
+  id: '/(home)/audio/',
+  path: '/audio/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const homePlaylistIdIndexRoute = homePlaylistIdIndexRouteImport.update({
+  id: '/(home)/playlist/$id/',
+  path: '/playlist/$id/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const homeAudioIdIndexRoute = homeAudioIdIndexRouteImport.update({
+  id: '/(home)/audio/$id/',
+  path: '/audio/$id/',
   getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof homeIndexRoute
-  '/$id': typeof homeIdIndexRoute
+  '/audio': typeof homeAudioIndexRoute
+  '/playlist': typeof homePlaylistIndexRoute
+  '/audio/$id': typeof homeAudioIdIndexRoute
+  '/playlist/$id': typeof homePlaylistIdIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof homeIndexRoute
-  '/$id': typeof homeIdIndexRoute
+  '/audio': typeof homeAudioIndexRoute
+  '/playlist': typeof homePlaylistIndexRoute
+  '/audio/$id': typeof homeAudioIdIndexRoute
+  '/playlist/$id': typeof homePlaylistIdIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/(home)/': typeof homeIndexRoute
-  '/(home)/$id/': typeof homeIdIndexRoute
+  '/(home)/audio/': typeof homeAudioIndexRoute
+  '/(home)/playlist/': typeof homePlaylistIndexRoute
+  '/(home)/audio/$id/': typeof homeAudioIdIndexRoute
+  '/(home)/playlist/$id/': typeof homePlaylistIdIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/$id'
+  fullPaths: '/' | '/audio' | '/playlist' | '/audio/$id' | '/playlist/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/$id'
-  id: '__root__' | '/(home)/' | '/(home)/$id/'
+  to: '/' | '/audio' | '/playlist' | '/audio/$id' | '/playlist/$id'
+  id:
+    | '__root__'
+    | '/(home)/'
+    | '/(home)/audio/'
+    | '/(home)/playlist/'
+    | '/(home)/audio/$id/'
+    | '/(home)/playlist/$id/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   homeIndexRoute: typeof homeIndexRoute
-  homeIdIndexRoute: typeof homeIdIndexRoute
+  homeAudioIndexRoute: typeof homeAudioIndexRoute
+  homePlaylistIndexRoute: typeof homePlaylistIndexRoute
+  homeAudioIdIndexRoute: typeof homeAudioIdIndexRoute
+  homePlaylistIdIndexRoute: typeof homePlaylistIdIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -58,11 +94,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof homeIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/(home)/$id/': {
-      id: '/(home)/$id/'
-      path: '/$id'
-      fullPath: '/$id'
-      preLoaderRoute: typeof homeIdIndexRouteImport
+    '/(home)/playlist/': {
+      id: '/(home)/playlist/'
+      path: '/playlist'
+      fullPath: '/playlist'
+      preLoaderRoute: typeof homePlaylistIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/(home)/audio/': {
+      id: '/(home)/audio/'
+      path: '/audio'
+      fullPath: '/audio'
+      preLoaderRoute: typeof homeAudioIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/(home)/playlist/$id/': {
+      id: '/(home)/playlist/$id/'
+      path: '/playlist/$id'
+      fullPath: '/playlist/$id'
+      preLoaderRoute: typeof homePlaylistIdIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/(home)/audio/$id/': {
+      id: '/(home)/audio/$id/'
+      path: '/audio/$id'
+      fullPath: '/audio/$id'
+      preLoaderRoute: typeof homeAudioIdIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -70,7 +127,10 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   homeIndexRoute: homeIndexRoute,
-  homeIdIndexRoute: homeIdIndexRoute,
+  homeAudioIndexRoute: homeAudioIndexRoute,
+  homePlaylistIndexRoute: homePlaylistIndexRoute,
+  homeAudioIdIndexRoute: homeAudioIdIndexRoute,
+  homePlaylistIdIndexRoute: homePlaylistIdIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

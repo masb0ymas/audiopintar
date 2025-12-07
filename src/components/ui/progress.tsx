@@ -3,24 +3,121 @@ import * as React from 'react'
 
 import { cn } from '~/lib/utils'
 
-const Progress = React.forwardRef<
-  React.ElementRef<typeof ProgressPrimitive.Root>,
-  React.ComponentPropsWithoutRef<typeof ProgressPrimitive.Root>
->(({ className, value, ...props }, ref) => (
-  <ProgressPrimitive.Root
-    ref={ref}
-    className={cn(
-      'relative h-4 w-full overflow-hidden rounded-full bg-secondary',
-      className,
-    )}
-    {...props}
-  >
-    <ProgressPrimitive.Indicator
-      className="h-full w-full flex-1 bg-primary transition-all"
-      style={{ transform: `translateX(-${100 - (value || 0)}%)` }}
-    />
-  </ProgressPrimitive.Root>
-))
-Progress.displayName = ProgressPrimitive.Root.displayName
+function Progress({
+  className,
+  value,
+  ...props
+}: React.ComponentProps<typeof ProgressPrimitive.Root>) {
+  return (
+    <ProgressPrimitive.Root
+      data-slot="progress"
+      className={cn(
+        'bg-primary/20 relative h-2 w-full overflow-hidden rounded-full',
+        className,
+      )}
+      {...props}
+    >
+      <ProgressPrimitive.Indicator
+        data-slot="progress-indicator"
+        className="bg-primary h-full w-full flex-1 transition-all"
+        style={{ transform: `translateX(-${100 - (value || 0)}%)` }}
+      />
+    </ProgressPrimitive.Root>
+  )
+}
 
-export { Progress }
+function ProgressCircle({
+  className,
+  indicatorClassName,
+  trackClassName,
+  value = 0,
+  size = 48,
+  strokeWidth = 4,
+  children,
+  ...props
+}: React.ComponentProps<'div'> & {
+  /**
+   * Progress value from 0 to 100
+   */
+  value?: number
+  /**
+   * Size of the circle in pixels
+   */
+  size?: number
+  /**
+   * Width of the progress stroke
+   */
+  strokeWidth?: number
+  /**
+   * Additional className for the progress stroke
+   */
+  indicatorClassName?: string
+  /**
+   * Additional className for the progress track
+   */
+  trackClassName?: string
+  /**
+   * Content to display in the center of the circle
+   */
+  children?: React.ReactNode
+}) {
+  const radius = (size - strokeWidth) / 2
+  const circumference = radius * 2 * Math.PI
+  const offset = circumference - (value / 100) * circumference
+
+  return (
+    <div
+      data-slot="progress-circle"
+      className={cn(
+        'relative inline-flex items-center justify-center',
+        className,
+      )}
+      style={{ width: size, height: size }}
+      {...props}
+    >
+      <svg
+        className="absolute inset-0 -rotate-90"
+        width={size}
+        height={size}
+        viewBox={`0 0 ${size} ${size}`}
+      >
+        <circle
+          data-slot="progress-circle-track"
+          cx={size / 2}
+          cy={size / 2}
+          r={radius}
+          stroke="currentColor"
+          strokeWidth={strokeWidth}
+          fill="none"
+          className={cn('text-secondary', trackClassName)}
+        />
+        <circle
+          data-slot="progress-circle-indicator"
+          cx={size / 2}
+          cy={size / 2}
+          r={radius}
+          stroke="currentColor"
+          strokeWidth={strokeWidth}
+          fill="none"
+          strokeDasharray={circumference}
+          strokeDashoffset={offset}
+          strokeLinecap="round"
+          className={cn(
+            'text-primary transition-all duration-300 ease-in-out',
+            indicatorClassName,
+          )}
+        />
+      </svg>
+      {children && (
+        <div
+          data-slot="progress-circle-content"
+          className="relative z-10 flex items-center justify-center text-sm font-medium"
+        >
+          {children}
+        </div>
+      )}
+    </div>
+  )
+}
+
+export { Progress, ProgressCircle }
