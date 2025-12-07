@@ -11,10 +11,7 @@ function Progress({
   return (
     <ProgressPrimitive.Root
       data-slot="progress"
-      className={cn(
-        'bg-primary/20 relative h-2 w-full overflow-hidden rounded-full',
-        className,
-      )}
+      className={cn('bg-primary/20 relative h-2 w-full overflow-hidden rounded-full', className)}
       {...props}
     >
       <ProgressPrimitive.Indicator
@@ -68,10 +65,7 @@ function ProgressCircle({
   return (
     <div
       data-slot="progress-circle"
-      className={cn(
-        'relative inline-flex items-center justify-center',
-        className,
-      )}
+      className={cn('relative inline-flex items-center justify-center', className)}
       style={{ width: size, height: size }}
       {...props}
     >
@@ -102,10 +96,7 @@ function ProgressCircle({
           strokeDasharray={circumference}
           strokeDashoffset={offset}
           strokeLinecap="round"
-          className={cn(
-            'text-primary transition-all duration-300 ease-in-out',
-            indicatorClassName,
-          )}
+          className={cn('text-primary transition-all duration-300 ease-in-out', indicatorClassName)}
         />
       </svg>
       {children && (

@@ -10,11 +10,7 @@ export default defineConfig([
   globalIgnores(['dist', 'node_modules', '.output', 'dist']),
   {
     files: ['**/*.{ts,tsx,js,jsx}'],
-    extends: [
-      js.configs.recommended,
-      tseslint.configs.recommended,
-      reactRefresh.configs.vite,
-    ],
+    extends: [js.configs.recommended, tseslint.configs.recommended, reactRefresh.configs.vite],
     languageOptions: {
       ecmaVersion: 2020,
       globals: globals.browser,

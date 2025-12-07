@@ -17,8 +17,7 @@ const continueItems: ContinueItem[] = [
     id: '1',
     title: 'Atomic Habits',
     author: 'James Clear',
-    cover:
-      'https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=200&h=200&fit=crop',
+    cover: 'https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=200&h=200&fit=crop',
     progress: 65,
     timeLeft: '2h 15m left',
   },
@@ -26,8 +25,7 @@ const continueItems: ContinueItem[] = [
     id: '2',
     title: 'The Psychology of Money',
     author: 'Morgan Housel',
-    cover:
-      'https://images.unsplash.com/photo-1553729459-efe14ef6055d?w=200&h=200&fit=crop',
+    cover: 'https://images.unsplash.com/photo-1553729459-efe14ef6055d?w=200&h=200&fit=crop',
     progress: 32,
     timeLeft: '4h 30m left',
   },
@@ -35,8 +33,7 @@ const continueItems: ContinueItem[] = [
     id: '3',
     title: 'Deep Work',
     author: 'Cal Newport',
-    cover:
-      'https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=200&h=200&fit=crop',
+    cover: 'https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=200&h=200&fit=crop',
     progress: 78,
     timeLeft: '1h 10m left',
   },
@@ -45,39 +42,29 @@ const continueItems: ContinueItem[] = [
 export function ContinueListening() {
   return (
     <section className="mb-8">
-      <h2 className="text-2xl font-bold text-foreground mb-4">
-        Continue Listening
-      </h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <h2 className="text-foreground mb-4 text-2xl font-bold">Continue Listening</h2>
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {continueItems.map((item) => (
           <Link
             to={`/audio/${item.id}`}
             key={item.id}
-            className="group flex items-center gap-4 bg-secondary/50 hover:bg-secondary rounded-lg p-3 transition-all cursor-pointer"
+            className="group bg-secondary/50 hover:bg-secondary flex cursor-pointer items-center gap-4 rounded-lg p-3 transition-all"
           >
-            <div className="relative w-16 h-16 rounded-md overflow-hidden flex-shrink-0">
-              <img
-                src={item.cover}
-                alt={item.title}
-                className="w-full h-full object-cover"
-              />
-              <button className="absolute inset-0 bg-background/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                <Play className="w-6 h-6 text-foreground" fill="currentColor" />
+            <div className="relative h-16 w-16 flex-shrink-0 overflow-hidden rounded-md">
+              <img src={item.cover} alt={item.title} className="h-full w-full object-cover" />
+              <button className="bg-background/60 absolute inset-0 flex items-center justify-center opacity-0 transition-opacity group-hover:opacity-100">
+                <Play className="text-foreground h-6 w-6" fill="currentColor" />
               </button>
             </div>
-            <div className="flex-1 min-w-0">
-              <h3 className="font-semibold text-foreground truncate text-sm">
-                {item.title}
-              </h3>
-              <p className="text-xs text-muted-foreground truncate mb-2">
-                {item.author}
-              </p>
+            <div className="min-w-0 flex-1">
+              <h3 className="text-foreground truncate text-sm font-semibold">{item.title}</h3>
+              <p className="text-muted-foreground mb-2 truncate text-xs">{item.author}</p>
               <div className="flex items-center gap-2">
                 <Progress
                   value={item.progress}
-                  className="h-1 flex-1 group-hover:bg-neutral-700 group-hover:transition-colors duration-300"
+                  className="h-1 flex-1 duration-300 group-hover:bg-neutral-700 group-hover:transition-colors"
                 />
-                <span className="text-xs text-muted-foreground whitespace-nowrap">
+                <span className="text-muted-foreground text-xs whitespace-nowrap">
                   {item.timeLeft}
                 </span>
               </div>

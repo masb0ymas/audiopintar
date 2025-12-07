@@ -1,6 +1,7 @@
 import { Link } from '@tanstack/react-router'
 import { Headphones, Heart, Home, Library, Plus, Search } from 'lucide-react'
 
+import { env } from '~/env'
 import { cn } from '~/lib/utils'
 
 interface SidebarProps {
@@ -23,14 +24,14 @@ const playlists = [
 
 export function Sidebar({ className }: SidebarProps) {
   return (
-    <aside className={cn('w-64 bg-sidebar flex flex-col h-full', className)}>
+    <aside className={cn('bg-sidebar flex h-full w-64 flex-col', className)}>
       {/* Logo */}
       <div className="p-6">
         <div className="flex items-center gap-2">
-          <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center">
-            <Headphones className="w-5 h-5 text-primary-foreground" />
+          <div className="bg-primary flex h-10 w-10 items-center justify-center rounded-full">
+            <Headphones className="text-primary-foreground h-5 w-5" />
           </div>
-          <span className="text-xl font-bold text-foreground">Audioly</span>
+          <span className="text-foreground text-xl font-bold">{env.VITE_APP_NAME}</span>
         </div>
       </div>
 
@@ -42,13 +43,13 @@ export function Sidebar({ className }: SidebarProps) {
               <Link
                 to={item.href}
                 className={cn(
-                  'w-full flex items-center gap-4 px-4 py-3 rounded-lg text-sm font-medium transition-all',
+                  'flex w-full items-center gap-4 rounded-lg px-4 py-3 text-sm font-medium transition-all',
                   item.active
                     ? 'bg-sidebar-accent text-foreground'
                     : 'text-sidebar-foreground hover:text-foreground hover:bg-sidebar-accent/50',
                 )}
               >
-                <item.icon className="w-5 h-5" />
+                <item.icon className="h-5 w-5" />
                 {item.label}
               </Link>
             </li>
@@ -57,26 +58,24 @@ export function Sidebar({ className }: SidebarProps) {
       </nav>
 
       {/* Library Section */}
-      <div className="mt-6 px-3 flex-1 overflow-hidden flex flex-col">
-        <div className="flex items-center justify-between px-4 mb-4">
-          <span className="text-sm font-semibold text-sidebar-foreground">
-            Your Playlists
-          </span>
-          <button className="p-1 hover:bg-sidebar-accent rounded-md transition-colors">
-            <Plus className="w-5 h-5 text-sidebar-foreground" />
+      <div className="mt-6 flex flex-1 flex-col overflow-hidden px-3">
+        <div className="mb-4 flex items-center justify-between px-4">
+          <span className="text-sidebar-foreground text-sm font-semibold">Your Playlists</span>
+          <button className="hover:bg-sidebar-accent rounded-md p-1 transition-colors">
+            <Plus className="text-sidebar-foreground h-5 w-5" />
           </button>
         </div>
 
-        <div className="flex-1 overflow-y-auto scrollbar-thin">
+        <div className="scrollbar-thin flex-1 overflow-y-auto">
           <ul className="space-y-1">
             <li>
-              <button className="w-full flex items-center gap-3 px-4 py-2 rounded-lg text-sm text-sidebar-foreground hover:text-foreground hover:bg-sidebar-accent/50 transition-all">
-                <div className="w-10 h-10 rounded-md bg-gradient-to-br from-primary/80 to-primary/20 flex items-center justify-center">
-                  <Heart className="w-4 h-4 text-foreground" />
+              <button className="text-sidebar-foreground hover:text-foreground hover:bg-sidebar-accent/50 flex w-full items-center gap-3 rounded-lg px-4 py-2 text-sm transition-all">
+                <div className="from-primary/80 to-primary/20 flex h-10 w-10 items-center justify-center rounded-md bg-gradient-to-br">
+                  <Heart className="text-foreground h-4 w-4" />
                 </div>
                 <div className="text-left">
                   <p className="font-medium">Liked Audiobooks</p>
-                  <p className="text-xs text-muted-foreground">24 books</p>
+                  <p className="text-muted-foreground text-xs">24 books</p>
                 </div>
               </button>
             </li>
@@ -84,12 +83,12 @@ export function Sidebar({ className }: SidebarProps) {
               <li key={playlist.id}>
                 <Link
                   to={`/playlist/${playlist.id}`}
-                  className="w-full flex items-center gap-3 px-4 py-2 rounded-lg text-sm text-sidebar-foreground hover:text-foreground hover:bg-sidebar-accent/50 transition-all"
+                  className="text-sidebar-foreground hover:text-foreground hover:bg-sidebar-accent/50 flex w-full items-center gap-3 rounded-lg px-4 py-2 text-sm transition-all"
                 >
-                  <div className="w-10 h-10 rounded-md bg-secondary flex items-center justify-center">
-                    <Library className="w-4 h-4 text-muted-foreground" />
+                  <div className="bg-secondary flex h-10 w-10 items-center justify-center rounded-md">
+                    <Library className="text-muted-foreground h-4 w-4" />
                   </div>
-                  <span className="font-medium truncate">{playlist.name}</span>
+                  <span className="truncate font-medium">{playlist.name}</span>
                 </Link>
               </li>
             ))}

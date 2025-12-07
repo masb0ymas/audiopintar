@@ -37,32 +37,28 @@ const playlistsData: Record<string, Playlist> = {
         title: 'Atomic Habits',
         author: 'James Clear',
         duration: '5h 35m',
-        cover:
-          'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=300&h=300&fit=crop',
+        cover: 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=300&h=300&fit=crop',
       },
       {
         id: '2',
         title: 'The Psychology of Money',
         author: 'Morgan Housel',
         duration: '5h 48m',
-        cover:
-          'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=300&h=300&fit=crop',
+        cover: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=300&h=300&fit=crop',
       },
       {
         id: '3',
         title: 'Deep Work',
         author: 'Cal Newport',
         duration: '7h 44m',
-        cover:
-          'https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?w=300&h=300&fit=crop',
+        cover: 'https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?w=300&h=300&fit=crop',
       },
       {
         id: '4',
         title: 'The Midnight Library',
         author: 'Matt Haig',
         duration: '8h 50m',
-        cover:
-          'https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=300&h=300&fit=crop',
+        cover: 'https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=300&h=300&fit=crop',
       },
     ],
   },
@@ -76,24 +72,21 @@ const playlistsData: Record<string, Playlist> = {
         title: 'Atomic Habits',
         author: 'James Clear',
         duration: '5h 35m',
-        cover:
-          'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=300&h=300&fit=crop',
+        cover: 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=300&h=300&fit=crop',
       },
       {
         id: '5',
         title: 'Think and Grow Rich',
         author: 'Napoleon Hill',
         duration: '9h 35m',
-        cover:
-          'https://images.unsplash.com/photo-1553729459-efe14ef6055d?w=300&h=300&fit=crop',
+        cover: 'https://images.unsplash.com/photo-1553729459-efe14ef6055d?w=300&h=300&fit=crop',
       },
       {
         id: '3',
         title: 'Deep Work',
         author: 'Cal Newport',
         duration: '7h 44m',
-        cover:
-          'https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?w=300&h=300&fit=crop',
+        cover: 'https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?w=300&h=300&fit=crop',
       },
     ],
   },
@@ -107,16 +100,14 @@ const playlistsData: Record<string, Playlist> = {
         title: 'The Midnight Library',
         author: 'Matt Haig',
         duration: '8h 50m',
-        cover:
-          'https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=300&h=300&fit=crop',
+        cover: 'https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=300&h=300&fit=crop',
       },
       {
         id: '6',
         title: 'Project Hail Mary',
         author: 'Andy Weir',
         duration: '16h 10m',
-        cover:
-          'https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=300&h=300&fit=crop',
+        cover: 'https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=300&h=300&fit=crop',
       },
     ],
   },
@@ -130,16 +121,14 @@ const playlistsData: Record<string, Playlist> = {
         title: 'The Silent Patient',
         author: 'Alex Michaelides',
         duration: '8h 43m',
-        cover:
-          'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=300&h=300&fit=crop',
+        cover: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=300&h=300&fit=crop',
       },
       {
         id: '8',
         title: 'Gone Girl',
         author: 'Gillian Flynn',
         duration: '19h 11m',
-        cover:
-          'https://images.unsplash.com/photo-1495640388908-05fa85288e61?w=300&h=300&fit=crop',
+        cover: 'https://images.unsplash.com/photo-1495640388908-05fa85288e61?w=300&h=300&fit=crop',
       },
     ],
   },
@@ -153,16 +142,14 @@ const playlistsData: Record<string, Playlist> = {
         title: 'The Psychology of Money',
         author: 'Morgan Housel',
         duration: '5h 48m',
-        cover:
-          'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=300&h=300&fit=crop',
+        cover: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=300&h=300&fit=crop',
       },
       {
         id: '5',
         title: 'Think and Grow Rich',
         author: 'Napoleon Hill',
         duration: '9h 35m',
-        cover:
-          'https://images.unsplash.com/photo-1553729459-efe14ef6055d?w=300&h=300&fit=crop',
+        cover: 'https://images.unsplash.com/photo-1553729459-efe14ef6055d?w=300&h=300&fit=crop',
       },
     ],
   },
@@ -174,13 +161,11 @@ function RouteComponent() {
 
   if (!playlist) {
     return (
-      <div className="flex h-screen bg-background">
+      <div className="bg-background flex h-screen">
         <Sidebar />
-        <main className="flex-1 flex items-center justify-center">
+        <main className="flex flex-1 items-center justify-center">
           <div className="text-center">
-            <h1 className="text-2xl font-bold text-foreground mb-4">
-              Playlist not found
-            </h1>
+            <h1 className="text-foreground mb-4 text-2xl font-bold">Playlist not found</h1>
             <Link to="/" className="text-primary hover:underline">
               Go back home
             </Link>
@@ -191,41 +176,35 @@ function RouteComponent() {
   }
 
   return (
-    <div className="flex h-screen bg-background">
+    <div className="bg-background flex h-screen">
       <Sidebar />
 
-      <main className="flex-1 flex flex-col overflow-hidden">
+      <main className="flex flex-1 flex-col overflow-hidden">
         <div className="flex-1 overflow-y-auto">
           {/* Header with gradient */}
-          <div
-            className={`bg-gradient-to-b ${playlist.coverGradient} to-background p-8`}
-          >
+          <div className={`bg-gradient-to-b ${playlist.coverGradient} to-background p-8`}>
             <Link
               to="/"
-              className="inline-flex items-center gap-2 text-foreground/70 hover:text-foreground mb-6 transition-colors"
+              className="text-foreground/70 hover:text-foreground mb-6 inline-flex items-center gap-2 transition-colors"
             >
-              <ArrowLeft className="w-5 h-5" />
+              <ArrowLeft className="h-5 w-5" />
               Back
             </Link>
 
             <div className="flex items-end gap-6">
               <div
-                className={`w-52 h-52 rounded-lg bg-gradient-to-br ${playlist.coverGradient} shadow-2xl flex items-center justify-center`}
+                className={`h-52 w-52 rounded-lg bg-gradient-to-br ${playlist.coverGradient} flex items-center justify-center shadow-2xl`}
               >
-                <Heart className="w-20 h-20 text-foreground" />
+                <Heart className="text-foreground h-20 w-20" />
               </div>
 
               <div className="flex-1">
-                <p className="text-sm font-medium text-foreground/70 uppercase tracking-wider">
+                <p className="text-foreground/70 text-sm font-medium tracking-wider uppercase">
                   Playlist
                 </p>
-                <h1 className="text-5xl font-bold text-foreground mt-2 mb-4">
-                  {playlist.name}
-                </h1>
-                <p className="text-foreground/70 mb-4">
-                  {playlist.description}
-                </p>
-                <p className="text-sm text-foreground/50">
+                <h1 className="text-foreground mt-2 mb-4 text-5xl font-bold">{playlist.name}</h1>
+                <p className="text-foreground/70 mb-4">{playlist.description}</p>
+                <p className="text-foreground/50 text-sm">
                   {playlist.audiobooks.length} audiobooks
                 </p>
               </div>
@@ -233,18 +212,18 @@ function RouteComponent() {
           </div>
 
           {/* Controls */}
-          <div className="px-8 py-6 flex items-center gap-6">
+          <div className="flex items-center gap-6 px-8 py-6">
             <Button
               size="lg"
-              className="w-14 h-14 rounded-full bg-primary hover:bg-primary/90 hover:scale-105 transition-all"
+              className="bg-primary hover:bg-primary/90 h-14 w-14 rounded-full transition-all hover:scale-105"
             >
-              <Play className="size-6 fill-primary-foreground text-primary-foreground ml-1" />
+              <Play className="fill-primary-foreground text-primary-foreground ml-1 size-6" />
             </Button>
             <button className="text-foreground/50 hover:text-foreground transition-colors">
-              <Heart className="w-8 h-8" />
+              <Heart className="h-8 w-8" />
             </button>
             <button className="text-foreground/50 hover:text-foreground transition-colors">
-              <MoreHorizontal className="w-8 h-8" />
+              <MoreHorizontal className="h-8 w-8" />
             </button>
           </div>
 
@@ -252,12 +231,12 @@ function RouteComponent() {
           <div className="px-8 pb-32">
             <table className="w-full">
               <thead>
-                <tr className="text-foreground/50 text-sm border-b border-border">
-                  <th className="text-left font-medium pb-3 w-12">#</th>
-                  <th className="text-left font-medium pb-3">Title</th>
-                  <th className="text-left font-medium pb-3">Author</th>
-                  <th className="text-right font-medium pb-3 pr-4">
-                    <Clock className="w-4 h-4 inline" />
+                <tr className="text-foreground/50 border-border border-b text-sm">
+                  <th className="w-12 pb-3 text-left font-medium">#</th>
+                  <th className="pb-3 text-left font-medium">Title</th>
+                  <th className="pb-3 text-left font-medium">Author</th>
+                  <th className="pr-4 pb-3 text-right font-medium">
+                    <Clock className="inline h-4 w-4" />
                   </th>
                 </tr>
               </thead>
@@ -265,31 +244,26 @@ function RouteComponent() {
                 {playlist.audiobooks.map((audiobook, index) => (
                   <tr
                     key={audiobook.id}
-                    className="group hover:bg-card/50 transition-colors cursor-pointer"
+                    className="group hover:bg-card/50 cursor-pointer transition-colors"
                   >
-                    <td className="py-3 text-foreground/50 group-hover:text-foreground">
+                    <td className="text-foreground/50 group-hover:text-foreground py-3">
                       <span className="group-hover:hidden">{index + 1}</span>
-                      <Play className="w-4 h-4 hidden group-hover:block fill-foreground" />
+                      <Play className="fill-foreground hidden h-4 w-4 group-hover:block" />
                     </td>
                     <td className="py-3">
-                      <Link
-                        to={audiobook.id}
-                        className="flex items-center gap-4"
-                      >
+                      <Link to={audiobook.id} className="flex items-center gap-4">
                         <img
                           src={audiobook.cover}
                           alt={audiobook.title}
-                          className="w-10 h-10 rounded object-cover"
+                          className="h-10 w-10 rounded object-cover"
                         />
-                        <span className="font-medium text-foreground hover:underline">
+                        <span className="text-foreground font-medium hover:underline">
                           {audiobook.title}
                         </span>
                       </Link>
                     </td>
-                    <td className="py-3 text-foreground/70">
-                      {audiobook.author}
-                    </td>
-                    <td className="py-3 text-right text-foreground/50 pr-4">
+                    <td className="text-foreground/70 py-3">{audiobook.author}</td>
+                    <td className="text-foreground/50 py-3 pr-4 text-right">
                       {audiobook.duration}
                     </td>
                   </tr>

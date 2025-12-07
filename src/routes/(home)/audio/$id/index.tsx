@@ -1,13 +1,7 @@
 import { createFileRoute, Link } from '@tanstack/react-router'
-import {
-  ArrowLeft,
-  BookOpen,
-  Clock,
-  Headphones,
-  Play,
-  Star,
-} from 'lucide-react'
+import { ArrowLeft, BookOpen, Clock, Headphones, Play, Star } from 'lucide-react'
 
+import AIAnalysis from '~/components/block/audio/ai-analysis'
 import Loading from '~/components/block/common/loading'
 import NotFound from '~/components/block/common/not-found'
 import { PlayerBar } from '~/components/block/player-bar'
@@ -38,8 +32,7 @@ const audiobooksData: Record<string, AudiobookData> = {
   '1': {
     title: 'Atomic Habits',
     author: 'James Clear',
-    cover:
-      'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=400&h=400&fit=crop',
+    cover: 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=400&h=400&fit=crop',
     duration: '5h 35m',
     rating: 4.8,
     narrator: 'James Clear',
@@ -54,8 +47,7 @@ const audiobooksData: Record<string, AudiobookData> = {
   '2': {
     title: 'The Psychology of Money',
     author: 'Morgan Housel',
-    cover:
-      'https://images.unsplash.com/photo-1553729459-efe14ef6055d?w=400&h=400&fit=crop',
+    cover: 'https://images.unsplash.com/photo-1553729459-efe14ef6055d?w=400&h=400&fit=crop',
     duration: '5h 48m',
     rating: 4.7,
     narrator: 'Chris Hill',
@@ -70,8 +62,7 @@ const audiobooksData: Record<string, AudiobookData> = {
   '3': {
     title: 'Deep Work',
     author: 'Cal Newport',
-    cover:
-      'https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=400&h=400&fit=crop',
+    cover: 'https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=400&h=400&fit=crop',
     duration: '7h 44m',
     rating: 4.6,
     narrator: 'Jeff Bottoms',
@@ -89,8 +80,7 @@ const audiobooksData: Record<string, AudiobookData> = {
 const defaultAudiobook = {
   title: 'Unknown Audiobook',
   author: 'Unknown Author',
-  cover:
-    'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=400&h=400&fit=crop',
+  cover: 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=400&h=400&fit=crop',
   duration: 'N/A',
   rating: 0,
   narrator: 'Unknown',
@@ -106,74 +96,68 @@ function RouteComponent() {
   const audiobook = audiobooksData[id || ''] || defaultAudiobook
 
   return (
-    <div className="min-h-screen bg-background relative">
+    <div className="bg-background relative min-h-screen">
       {/* Header */}
-      <header className="sticky top-0 z-50 bg-background/80 backdrop-blur-md border-b border-border/50">
+      <header className="bg-background/80 border-border/50 sticky top-0 z-50 border-b backdrop-blur-md">
         <div className="container mx-auto px-6 py-4">
           <Link
             to="/"
-            className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors"
+            className="text-muted-foreground hover:text-foreground inline-flex items-center gap-2 transition-colors"
           >
-            <ArrowLeft className="w-5 h-5" />
+            <ArrowLeft className="h-5 w-5" />
             <span>Back to Library</span>
           </Link>
         </div>
       </header>
       {/* Content */}
       <main className="container mx-auto px-6 py-8 pb-32">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-12">
           {/* Left Column - Audiobook Details */}
           <div className="space-y-6">
             {/* Cover and Basic Info */}
-            <div className="flex flex-col sm:flex-row gap-6">
-              <div className="w-48 h-48 sm:w-56 sm:h-56 flex-shrink-0 mx-auto sm:mx-0">
+            <div className="flex flex-col gap-6 sm:flex-row">
+              <div className="mx-auto h-48 w-48 flex-shrink-0 sm:mx-0 sm:h-56 sm:w-56">
                 <img
                   src={audiobook.cover}
                   alt={audiobook.title}
-                  className="w-full h-full object-cover rounded-lg shadow-2xl"
+                  className="h-full w-full rounded-lg object-cover shadow-2xl"
                 />
               </div>
               <div className="flex flex-col justify-center text-center sm:text-left">
-                <p className="text-sm text-primary font-medium mb-2">
-                  {audiobook.genre}
-                </p>
-                <h1 className="text-3xl font-bold text-foreground mb-2">
-                  {audiobook.title}
-                </h1>
-                <p className="text-lg text-muted-foreground mb-4">
-                  by {audiobook.author}
-                </p>
+                <p className="text-primary mb-2 text-sm font-medium">{audiobook.genre}</p>
+                <h1 className="text-foreground mb-2 text-3xl font-bold">{audiobook.title}</h1>
+                <p className="text-muted-foreground mb-4 text-lg">by {audiobook.author}</p>
 
-                <div className="flex items-center justify-center sm:justify-start gap-4 text-sm text-muted-foreground mb-4">
+                <div className="text-muted-foreground mb-4 flex items-center justify-center gap-4 text-sm sm:justify-start">
                   <div className="flex items-center gap-1">
-                    <Star className="w-4 h-4 text-primary fill-primary" />
+                    <Star className="text-primary fill-primary h-4 w-4" />
                     <span>{audiobook.rating}</span>
                   </div>
                   <div className="flex items-center gap-1">
-                    <Clock className="w-4 h-4" />
+                    <Clock className="h-4 w-4" />
                     <span>{audiobook.duration}</span>
                   </div>
                   <div className="flex items-center gap-1">
-                    <BookOpen className="w-4 h-4" />
+                    <BookOpen className="h-4 w-4" />
                     <span>{audiobook.chapters} chapters</span>
                   </div>
                 </div>
 
-                <Button className="w-full sm:w-auto gap-2">
-                  <Play className="w-4 h-4" fill="currentColor" />
+                <Button className="w-full gap-2 sm:w-auto">
+                  <Play className="h-4 w-4" fill="currentColor" />
                   Play Now
                 </Button>
               </div>
             </div>
 
             {/* Additional Details */}
-            <div className="bg-card rounded-lg p-6 space-y-4">
-              <h2 className="text-lg font-semibold text-foreground">Details</h2>
+            <div className="bg-card space-y-4 rounded-lg p-6">
+              <h2 className="text-foreground text-lg font-semibold">Details</h2>
               <div className="grid grid-cols-2 gap-4 text-sm">
                 <div>
                   <p className="text-muted-foreground">Narrator</p>
                   <p className="text-foreground flex items-center gap-2">
-                    <Headphones className="w-4 h-4 text-primary" />
+                    <Headphones className="text-primary h-4 w-4" />
                     {audiobook.narrator}
                   </p>
                 </div>
@@ -193,76 +177,17 @@ function RouteComponent() {
             </div>
 
             {/* Description */}
-            <div className="bg-card rounded-lg p-6 space-y-4">
-              <h2 className="text-lg font-semibold text-foreground">
-                About this Audiobook
-              </h2>
-              <p className="text-muted-foreground leading-relaxed">
-                {audiobook.description}
-              </p>
+            <div className="bg-card space-y-4 rounded-lg p-6">
+              <h2 className="text-foreground text-lg font-semibold">About this Audiobook</h2>
+              <p className="text-muted-foreground leading-relaxed">{audiobook.description}</p>
             </div>
           </div>
 
           {/* Right Column - AI Summary */}
-          <div className="lg:sticky lg:top-24 lg:self-start">
-            <div className="bg-gradient-to-br from-card to-secondary/30 rounded-lg p-6 border border-primary/20">
-              <div className="flex items-center gap-2 mb-4">
-                <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center">
-                  <span className="text-primary text-sm font-bold">AI</span>
-                </div>
-                <div>
-                  <h2 className="text-lg font-semibold text-foreground">
-                    AI Summary
-                  </h2>
-                  <p className="text-xs text-muted-foreground">
-                    Powered by ChatGPT
-                  </p>
-                </div>
-              </div>
-              <div className="prose prose-invert prose-sm max-w-none">
-                <div className="text-muted-foreground leading-relaxed whitespace-pre-wrap">
-                  {audiobook.aiSummary.split('\n').map((line, index) => {
-                    if (line.startsWith('**') && line.endsWith('**')) {
-                      return (
-                        <h3
-                          key={index}
-                          className="text-foreground font-semibold mt-4 mb-2"
-                        >
-                          {line.replace(/\*\*/g, '')}
-                        </h3>
-                      )
-                    }
-                    if (line.startsWith('**')) {
-                      const parts = line.split('**')
-                      return (
-                        <p key={index} className="mb-1">
-                          <strong className="text-foreground">
-                            {parts[1]}
-                          </strong>
-                          {parts[2]}
-                        </p>
-                      )
-                    }
-                    if (line.trim().startsWith('-')) {
-                      return (
-                        <p key={index} className="ml-4 mb-1">
-                          {line}
-                        </p>
-                      )
-                    }
-                    return line ? (
-                      <p key={index} className="mb-2">
-                        {line}
-                      </p>
-                    ) : null
-                  })}
-                </div>
-              </div>
-            </div>
-          </div>
+          <AIAnalysis summary={audiobook.aiSummary} />
         </div>
       </main>
-      <div className="fixed bottom-0 left-0 right-0 z-40">
+      <div className="fixed right-0 bottom-0 left-0 z-40">
         <PlayerBar />
       </div>
     </div>
