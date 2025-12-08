@@ -1,37 +1,44 @@
 import { Link } from '@tanstack/react-router'
+import { Menu, X } from 'lucide-react'
+import { useState } from 'react'
 
 import BrandLogo from '~/components/block/site/brand-logo'
 import { Button } from '~/components/ui/button'
 
 export default function PublicNavbar() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+
+  const navLinks = [
+    { href: '#features', label: 'Features' },
+    { href: '#pricing', label: 'Pricing' },
+    { href: '#testimonials', label: 'Reviews' },
+    { href: '#faq', label: 'FAQ' },
+  ]
+
+  const handleNavClick = () => {
+    setMobileMenuOpen(false)
+  }
+
   return (
     <nav className="bg-background/80 border-border fixed top-0 right-0 left-0 z-50 border-b backdrop-blur-lg">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
         <BrandLogo />
+
+        {/* Desktop Navigation */}
         <div className="hidden items-center gap-8 md:flex">
-          <a
-            href="#features"
-            className="text-muted-foreground hover:text-foreground transition-colors"
-          >
-            Features
-          </a>
-          <a
-            href="#pricing"
-            className="text-muted-foreground hover:text-foreground transition-colors"
-          >
-            Pricing
-          </a>
-          <a
-            href="#testimonials"
-            className="text-muted-foreground hover:text-foreground transition-colors"
-          >
-            Reviews
-          </a>
-          <a href="#faq" className="text-muted-foreground hover:text-foreground transition-colors">
-            FAQ
-          </a>
+          {navLinks.map((link) => (
+            <a
+              key={link.href}
+              href={link.href}
+              className="text-muted-foreground hover:text-foreground transition-colors"
+            >
+              {link.label}
+            </a>
+          ))}
         </div>
-        <div className="flex items-center gap-3">
+
+        {/* Desktop Buttons */}
+        <div className="hidden items-center gap-3 md:flex">
           <Button variant="ghost" className="text-muted-foreground hover:text-foreground" asChild>
             <Link to="/">Sign In</Link>
           </Button>
@@ -40,7 +47,50 @@ export default function PublicNavbar() {
             <Link to="/">Start Free Trial</Link>
           </Button>
         </div>
+
+        {/* Mobile Menu Button */}
+        <button
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          className="text-foreground md:hidden"
+          aria-label="Toggle menu"
+        >
+          {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+        </button>
       </div>
+
+      {/* Mobile Menu */}
+      {mobileMenuOpen && (
+        <div className="border-border bg-background border-t md:hidden">
+          <div className="mx-auto max-w-7xl space-y-1 px-6 py-4">
+            {navLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                onClick={handleNavClick}
+                className="text-muted-foreground hover:text-foreground hover:bg-muted block rounded-lg px-4 py-3 transition-colors"
+              >
+                {link.label}
+              </a>
+            ))}
+            <div className="grid grid-cols-2 gap-2 pt-4">
+              <Button
+                variant="outline"
+                className="text-muted-foreground hover:text-foreground"
+                asChild
+              >
+                <Link to="/" onClick={handleNavClick}>
+                  Sign In
+                </Link>
+              </Button>
+              <Button className="bg-primary hover:bg-primary/90 text-primary-foreground" asChild>
+                <Link to="/" onClick={handleNavClick}>
+                  Start Free Trial
+                </Link>
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
     </nav>
   )
 }
