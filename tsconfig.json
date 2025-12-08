@@ -24,6 +24,13 @@
     "baseUrl": ".",
     "paths": {
       "~/*": ["./src/*"]
-    }
+    },
+    "plugins": [
+      {
+        "name": "ts-plugin-sort-import-suggestions",
+        "moveUpPatterns": ["@/", "\\.{1,2}/", "~/", "\\.{1,2}/"],
+        "moveDownPatterns": ["@radix-ui", "lucide-react"]
+      }
+    ]
   }
 }
