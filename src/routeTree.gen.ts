@@ -9,128 +9,228 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as homeIndexRouteImport } from './routes/(home)/index'
-import { Route as homePlaylistIndexRouteImport } from './routes/(home)/playlist/index'
-import { Route as homeAudioIndexRouteImport } from './routes/(home)/audio/index'
-import { Route as homePlaylistIdIndexRouteImport } from './routes/(home)/playlist/$id/index'
-import { Route as homeAudioIdIndexRouteImport } from './routes/(home)/audio/$id/index'
+import { Route as publicRouteRouteImport } from './routes/(public)/route'
+import { Route as publicTermsIndexRouteImport } from './routes/(public)/terms/index'
+import { Route as publicPrivacyIndexRouteImport } from './routes/(public)/privacy/index'
+import { Route as publicsiteIndexRouteImport } from './routes/(public)/(site)/index'
+import { Route as protectedPlaylistIndexRouteImport } from './routes/(protected)/playlist/index'
+import { Route as protectedHomeIndexRouteImport } from './routes/(protected)/home/index'
+import { Route as protectedAudioIndexRouteImport } from './routes/(protected)/audio/index'
+import { Route as protectedPlaylistIdIndexRouteImport } from './routes/(protected)/playlist/$id/index'
+import { Route as protectedAudioIdIndexRouteImport } from './routes/(protected)/audio/$id/index'
 
-const homeIndexRoute = homeIndexRouteImport.update({
-  id: '/(home)/',
-  path: '/',
+const publicRouteRoute = publicRouteRouteImport.update({
+  id: '/(public)',
   getParentRoute: () => rootRouteImport,
 } as any)
-const homePlaylistIndexRoute = homePlaylistIndexRouteImport.update({
-  id: '/(home)/playlist/',
+const publicTermsIndexRoute = publicTermsIndexRouteImport.update({
+  id: '/terms/',
+  path: '/terms/',
+  getParentRoute: () => publicRouteRoute,
+} as any)
+const publicPrivacyIndexRoute = publicPrivacyIndexRouteImport.update({
+  id: '/privacy/',
+  path: '/privacy/',
+  getParentRoute: () => publicRouteRoute,
+} as any)
+const publicsiteIndexRoute = publicsiteIndexRouteImport.update({
+  id: '/(site)/',
+  path: '/',
+  getParentRoute: () => publicRouteRoute,
+} as any)
+const protectedPlaylistIndexRoute = protectedPlaylistIndexRouteImport.update({
+  id: '/(protected)/playlist/',
   path: '/playlist/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const homeAudioIndexRoute = homeAudioIndexRouteImport.update({
-  id: '/(home)/audio/',
+const protectedHomeIndexRoute = protectedHomeIndexRouteImport.update({
+  id: '/(protected)/home/',
+  path: '/home/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const protectedAudioIndexRoute = protectedAudioIndexRouteImport.update({
+  id: '/(protected)/audio/',
   path: '/audio/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const homePlaylistIdIndexRoute = homePlaylistIdIndexRouteImport.update({
-  id: '/(home)/playlist/$id/',
-  path: '/playlist/$id/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const homeAudioIdIndexRoute = homeAudioIdIndexRouteImport.update({
-  id: '/(home)/audio/$id/',
+const protectedPlaylistIdIndexRoute =
+  protectedPlaylistIdIndexRouteImport.update({
+    id: '/(protected)/playlist/$id/',
+    path: '/playlist/$id/',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const protectedAudioIdIndexRoute = protectedAudioIdIndexRouteImport.update({
+  id: '/(protected)/audio/$id/',
   path: '/audio/$id/',
   getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
-  '/': typeof homeIndexRoute
-  '/audio': typeof homeAudioIndexRoute
-  '/playlist': typeof homePlaylistIndexRoute
-  '/audio/$id': typeof homeAudioIdIndexRoute
-  '/playlist/$id': typeof homePlaylistIdIndexRoute
+  '/audio': typeof protectedAudioIndexRoute
+  '/home': typeof protectedHomeIndexRoute
+  '/playlist': typeof protectedPlaylistIndexRoute
+  '/': typeof publicsiteIndexRoute
+  '/privacy': typeof publicPrivacyIndexRoute
+  '/terms': typeof publicTermsIndexRoute
+  '/audio/$id': typeof protectedAudioIdIndexRoute
+  '/playlist/$id': typeof protectedPlaylistIdIndexRoute
 }
 export interface FileRoutesByTo {
-  '/': typeof homeIndexRoute
-  '/audio': typeof homeAudioIndexRoute
-  '/playlist': typeof homePlaylistIndexRoute
-  '/audio/$id': typeof homeAudioIdIndexRoute
-  '/playlist/$id': typeof homePlaylistIdIndexRoute
+  '/audio': typeof protectedAudioIndexRoute
+  '/home': typeof protectedHomeIndexRoute
+  '/playlist': typeof protectedPlaylistIndexRoute
+  '/': typeof publicsiteIndexRoute
+  '/privacy': typeof publicPrivacyIndexRoute
+  '/terms': typeof publicTermsIndexRoute
+  '/audio/$id': typeof protectedAudioIdIndexRoute
+  '/playlist/$id': typeof protectedPlaylistIdIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/(home)/': typeof homeIndexRoute
-  '/(home)/audio/': typeof homeAudioIndexRoute
-  '/(home)/playlist/': typeof homePlaylistIndexRoute
-  '/(home)/audio/$id/': typeof homeAudioIdIndexRoute
-  '/(home)/playlist/$id/': typeof homePlaylistIdIndexRoute
+  '/(public)': typeof publicRouteRouteWithChildren
+  '/(protected)/audio/': typeof protectedAudioIndexRoute
+  '/(protected)/home/': typeof protectedHomeIndexRoute
+  '/(protected)/playlist/': typeof protectedPlaylistIndexRoute
+  '/(public)/(site)/': typeof publicsiteIndexRoute
+  '/(public)/privacy/': typeof publicPrivacyIndexRoute
+  '/(public)/terms/': typeof publicTermsIndexRoute
+  '/(protected)/audio/$id/': typeof protectedAudioIdIndexRoute
+  '/(protected)/playlist/$id/': typeof protectedPlaylistIdIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/audio' | '/playlist' | '/audio/$id' | '/playlist/$id'
+  fullPaths:
+    | '/audio'
+    | '/home'
+    | '/playlist'
+    | '/'
+    | '/privacy'
+    | '/terms'
+    | '/audio/$id'
+    | '/playlist/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/audio' | '/playlist' | '/audio/$id' | '/playlist/$id'
+  to:
+    | '/audio'
+    | '/home'
+    | '/playlist'
+    | '/'
+    | '/privacy'
+    | '/terms'
+    | '/audio/$id'
+    | '/playlist/$id'
   id:
     | '__root__'
-    | '/(home)/'
-    | '/(home)/audio/'
-    | '/(home)/playlist/'
-    | '/(home)/audio/$id/'
-    | '/(home)/playlist/$id/'
+    | '/(public)'
+    | '/(protected)/audio/'
+    | '/(protected)/home/'
+    | '/(protected)/playlist/'
+    | '/(public)/(site)/'
+    | '/(public)/privacy/'
+    | '/(public)/terms/'
+    | '/(protected)/audio/$id/'
+    | '/(protected)/playlist/$id/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  homeIndexRoute: typeof homeIndexRoute
-  homeAudioIndexRoute: typeof homeAudioIndexRoute
-  homePlaylistIndexRoute: typeof homePlaylistIndexRoute
-  homeAudioIdIndexRoute: typeof homeAudioIdIndexRoute
-  homePlaylistIdIndexRoute: typeof homePlaylistIdIndexRoute
+  publicRouteRoute: typeof publicRouteRouteWithChildren
+  protectedAudioIndexRoute: typeof protectedAudioIndexRoute
+  protectedHomeIndexRoute: typeof protectedHomeIndexRoute
+  protectedPlaylistIndexRoute: typeof protectedPlaylistIndexRoute
+  protectedAudioIdIndexRoute: typeof protectedAudioIdIndexRoute
+  protectedPlaylistIdIndexRoute: typeof protectedPlaylistIdIndexRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/(home)/': {
-      id: '/(home)/'
+    '/(public)': {
+      id: '/(public)'
+      path: ''
+      fullPath: ''
+      preLoaderRoute: typeof publicRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/(public)/terms/': {
+      id: '/(public)/terms/'
+      path: '/terms'
+      fullPath: '/terms'
+      preLoaderRoute: typeof publicTermsIndexRouteImport
+      parentRoute: typeof publicRouteRoute
+    }
+    '/(public)/privacy/': {
+      id: '/(public)/privacy/'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof publicPrivacyIndexRouteImport
+      parentRoute: typeof publicRouteRoute
+    }
+    '/(public)/(site)/': {
+      id: '/(public)/(site)/'
       path: '/'
       fullPath: '/'
-      preLoaderRoute: typeof homeIndexRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof publicsiteIndexRouteImport
+      parentRoute: typeof publicRouteRoute
     }
-    '/(home)/playlist/': {
-      id: '/(home)/playlist/'
+    '/(protected)/playlist/': {
+      id: '/(protected)/playlist/'
       path: '/playlist'
       fullPath: '/playlist'
-      preLoaderRoute: typeof homePlaylistIndexRouteImport
+      preLoaderRoute: typeof protectedPlaylistIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/(home)/audio/': {
-      id: '/(home)/audio/'
+    '/(protected)/home/': {
+      id: '/(protected)/home/'
+      path: '/home'
+      fullPath: '/home'
+      preLoaderRoute: typeof protectedHomeIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/(protected)/audio/': {
+      id: '/(protected)/audio/'
       path: '/audio'
       fullPath: '/audio'
-      preLoaderRoute: typeof homeAudioIndexRouteImport
+      preLoaderRoute: typeof protectedAudioIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/(home)/playlist/$id/': {
-      id: '/(home)/playlist/$id/'
+    '/(protected)/playlist/$id/': {
+      id: '/(protected)/playlist/$id/'
       path: '/playlist/$id'
       fullPath: '/playlist/$id'
-      preLoaderRoute: typeof homePlaylistIdIndexRouteImport
+      preLoaderRoute: typeof protectedPlaylistIdIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/(home)/audio/$id/': {
-      id: '/(home)/audio/$id/'
+    '/(protected)/audio/$id/': {
+      id: '/(protected)/audio/$id/'
       path: '/audio/$id'
       fullPath: '/audio/$id'
-      preLoaderRoute: typeof homeAudioIdIndexRouteImport
+      preLoaderRoute: typeof protectedAudioIdIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
 }
 
+interface publicRouteRouteChildren {
+  publicsiteIndexRoute: typeof publicsiteIndexRoute
+  publicPrivacyIndexRoute: typeof publicPrivacyIndexRoute
+  publicTermsIndexRoute: typeof publicTermsIndexRoute
+}
+
+const publicRouteRouteChildren: publicRouteRouteChildren = {
+  publicsiteIndexRoute: publicsiteIndexRoute,
+  publicPrivacyIndexRoute: publicPrivacyIndexRoute,
+  publicTermsIndexRoute: publicTermsIndexRoute,
+}
+
+const publicRouteRouteWithChildren = publicRouteRoute._addFileChildren(
+  publicRouteRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
-  homeIndexRoute: homeIndexRoute,
-  homeAudioIndexRoute: homeAudioIndexRoute,
-  homePlaylistIndexRoute: homePlaylistIndexRoute,
-  homeAudioIdIndexRoute: homeAudioIdIndexRoute,
-  homePlaylistIdIndexRoute: homePlaylistIdIndexRoute,
+  publicRouteRoute: publicRouteRouteWithChildren,
+  protectedAudioIndexRoute: protectedAudioIndexRoute,
+  protectedHomeIndexRoute: protectedHomeIndexRoute,
+  protectedPlaylistIndexRoute: protectedPlaylistIndexRoute,
+  protectedAudioIdIndexRoute: protectedAudioIdIndexRoute,
+  protectedPlaylistIdIndexRoute: protectedPlaylistIdIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

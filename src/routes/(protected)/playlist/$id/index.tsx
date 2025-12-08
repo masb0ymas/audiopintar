@@ -7,7 +7,7 @@ import { PlayerBar } from '~/components/block/player-bar'
 import { Sidebar } from '~/components/block/sidebar'
 import { Button } from '~/components/ui/button'
 
-export const Route = createFileRoute('/(home)/playlist/$id/')({
+export const Route = createFileRoute('/(protected)/playlist/$id/')({
   component: RouteComponent,
   pendingComponent: Loading,
   notFoundComponent: NotFound,

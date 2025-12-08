@@ -60,10 +60,7 @@ export function ContinueListening() {
               <h3 className="text-foreground truncate text-sm font-semibold">{item.title}</h3>
               <p className="text-muted-foreground mb-2 truncate text-xs">{item.author}</p>
               <div className="flex items-center gap-2">
-                <Progress
-                  value={item.progress}
-                  className="h-1 flex-1 duration-300 group-hover:bg-neutral-700 group-hover:transition-colors"
-                />
+                <Progress value={item.progress} className="h-1 flex-1" />
                 <span className="text-muted-foreground text-xs whitespace-nowrap">
                   {item.timeLeft}
                 </span>

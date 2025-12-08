@@ -9,7 +9,7 @@ import { HeroSection } from '~/components/block/hero-section'
 import { PlayerBar } from '~/components/block/player-bar'
 import { Sidebar } from '~/components/block/sidebar'
 
-export const Route = createFileRoute('/(home)/')({
+export const Route = createFileRoute('/(protected)/home/')({
   component: RouteComponent,
   pendingComponent: Loading,
   notFoundComponent: NotFound,
