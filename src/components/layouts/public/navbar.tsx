@@ -1,5 +1,6 @@
 import { Link } from '@tanstack/react-router'
 import { Menu, X } from 'lucide-react'
+import { AnimatePresence, motion } from 'motion/react'
 import { useState } from 'react'
 
 import BrandLogo from '~/components/block/site/brand-logo'
@@ -59,38 +60,59 @@ export default function PublicNavbar() {
       </div>
 
       {/* Mobile Menu */}
-      {mobileMenuOpen && (
-        <div className="border-border bg-background border-t md:hidden">
-          <div className="mx-auto max-w-7xl space-y-1 px-6 py-4">
-            {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                onClick={handleNavClick}
-                className="text-muted-foreground hover:text-foreground hover:bg-muted block rounded-lg px-4 py-3 transition-colors"
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3, ease: 'easeInOut' }}
+            className="border-border bg-background overflow-hidden border-t md:hidden"
+          >
+            <motion.div
+              initial={{ y: -20 }}
+              animate={{ y: 0 }}
+              transition={{ duration: 0.3, ease: 'easeOut' }}
+              className="mx-auto max-w-7xl space-y-1 px-6 py-4"
+            >
+              {navLinks.map((link, index) => (
+                <motion.a
+                  key={link.href}
+                  href={link.href}
+                  onClick={handleNavClick}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.3, delay: index * 0.1 }}
+                  className="text-muted-foreground hover:text-foreground hover:bg-muted block rounded-lg px-4 py-3 transition-colors"
+                >
+                  {link.label}
+                </motion.a>
+              ))}
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3, delay: navLinks.length * 0.1 }}
+                className="grid grid-cols-2 gap-2 pt-4"
               >
-                {link.label}
-              </a>
-            ))}
-            <div className="grid grid-cols-2 gap-2 pt-4">
-              <Button
-                variant="outline"
-                className="text-muted-foreground hover:text-foreground"
-                asChild
-              >
-                <Link to="/" onClick={handleNavClick}>
-                  Sign In
-                </Link>
-              </Button>
-              <Button className="bg-primary hover:bg-primary/90 text-primary-foreground" asChild>
-                <Link to="/" onClick={handleNavClick}>
-                  Start Free Trial
-                </Link>
-              </Button>
-            </div>
-          </div>
-        </div>
-      )}
+                <Button
+                  variant="outline"
+                  className="text-muted-foreground hover:text-foreground"
+                  asChild
+                >
+                  <Link to="/" onClick={handleNavClick}>
+                    Sign In
+                  </Link>
+                </Button>
+                <Button className="bg-primary hover:bg-primary/90 text-primary-foreground" asChild>
+                  <Link to="/" onClick={handleNavClick}>
+                    Start Free Trial
+                  </Link>
+                </Button>
+              </motion.div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
   )
 }
