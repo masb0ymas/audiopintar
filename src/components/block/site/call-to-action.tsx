@@ -5,7 +5,7 @@ import { Button } from '~/components/ui/button'
 
 export default function CallToAction() {
   return (
-    <section className="px-6 py-20">
+    <section className="px-6 pt-20 pb-4">
       <div className="mx-auto max-w-4xl text-center">
         <div className="from-primary/20 via-card to-card border-primary/20 rounded-3xl border bg-gradient-to-br p-12">
           <Zap className="text-primary mx-auto mb-6 h-12 w-12" />

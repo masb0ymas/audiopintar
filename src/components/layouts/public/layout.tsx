@@ -11,7 +11,7 @@ export default function PublicLayout({ children }: PublicLayoutProps) {
   return (
     <div className="bg-background min-h-screen">
       <PublicNavbar />
-      {children}
+      <main className="py-16">{children}</main>
       <PublicFooter />
     </div>
   )

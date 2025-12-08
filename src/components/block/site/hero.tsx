@@ -5,7 +5,7 @@ import { Button } from '~/components/ui/button'
 
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden px-6 pt-32 pb-20">
+    <section className="relative overflow-hidden px-6 pt-16 pb-20">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_hsl(38_92%_50%_/_0.15)_0%,_transparent_50%)]" />
       <div className="relative mx-auto max-w-7xl">
         <div className="mx-auto max-w-4xl text-center">
