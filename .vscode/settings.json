@@ -1,12 +1,30 @@
 {
+  "editor.formatOnPaste": false,
+  "editor.formatOnSave": true,
+  "editor.tabSize": 2,
+  "editor.insertSpaces": false,
+  "files.eol": "\n",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
   "files.watcherExclude": {
     "**/routeTree.gen.ts": true
   },
+  "files.exclude": {
+    "node_modules/": true,
+    "dist/": true,
+    ".idea/": true,
+    ".tanstack/": true
+  },
   "search.exclude": {
-    "**/routeTree.gen.ts": true
+    "**/routeTree.gen.ts": true,
+    "**/node_modules": true,
+    "ios": true,
+    "android": true,
+    "vendor": true,
+    ".idea/": true,
+    ".tanstack/": true
   },
   "files.readonlyInclude": {
     "**/routeTree.gen.ts": true
   },
-  "typescript.tsdk": "node_modules\\typescript\\lib"
+  "typescript.tsdk": "node_modules/typescript/lib"
 }
