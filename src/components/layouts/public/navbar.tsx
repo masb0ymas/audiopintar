@@ -40,7 +40,7 @@ export default function PublicNavbar() {
 
         {/* Desktop Buttons */}
         <div className="hidden items-center gap-3 md:flex">
-          <Button variant="ghost" className="text-muted-foreground hover:text-foreground" asChild>
+          <Button variant="outline" className="text-muted-foreground hover:text-foreground" asChild>
             <Link to="/">Sign In</Link>
           </Button>
 

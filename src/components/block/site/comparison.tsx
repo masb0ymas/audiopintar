@@ -1,4 +1,4 @@
-import { Check, Headphones } from 'lucide-react'
+import { Check } from 'lucide-react'
 
 import { env } from '~/env'
 
@@ -46,10 +46,10 @@ export default function Comparison() {
                 <th className="text-foreground px-4 py-4 text-left font-semibold">Feature</th>
                 <th className="px-4 py-4">
                   <div className="flex items-center justify-center gap-2">
-                    <div className="bg-primary flex h-8 w-8 shrink-0 items-center justify-center rounded-full">
-                      <Headphones className="text-primary-foreground h-4 w-4 shrink-0" />
+                    <div className="flex h-8 w-8 items-center justify-center">
+                      <img src="/static/images/brand-logo.png" alt="brand-logo" />
                     </div>
-                    <span className="text-primary font-semibold">{env.VITE_APP_NAME}</span>
+                    <span className="text-foreground text-xl font-bold">{env.VITE_APP_NAME}</span>
                   </div>
                 </th>
                 <th className="text-muted-foreground px-4 py-4">Competitor A</th>

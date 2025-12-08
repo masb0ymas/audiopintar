@@ -50,7 +50,7 @@ export function ContinueListening() {
             key={item.id}
             className="group bg-secondary/50 hover:bg-secondary flex cursor-pointer items-center gap-4 rounded-lg p-3 transition-all"
           >
-            <div className="relative h-16 w-16 flex-shrink-0 overflow-hidden rounded-md">
+            <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-md">
               <img src={item.cover} alt={item.title} className="h-full w-full object-cover" />
               <button className="bg-background/60 absolute inset-0 flex items-center justify-center opacity-0 transition-opacity group-hover:opacity-100">
                 <Play className="text-foreground h-6 w-6" fill="currentColor" />

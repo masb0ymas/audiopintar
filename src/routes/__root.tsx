@@ -6,6 +6,17 @@ import { createRootRouteWithContext, HeadContent, Scripts } from '@tanstack/reac
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
 
 import NotFound from '~/components/block/common/not-found'
+import {
+  GOOGLE_FONTS,
+  META_CONTENT,
+  META_DESCRIPTION,
+  META_ICONS,
+  META_KEYWORDS,
+  META_TITLE,
+  META_URL,
+  OPEN_GRAPH_META,
+  TWITTER_META,
+} from '~/lib/constants/meta'
 import DecorationProvider from '~/lib/providers/decoration'
 
 import appCss from '../styles/globals.css?url'
@@ -25,14 +36,31 @@ export const Route = createRootRouteWithContext<RouterContext>()({
         content: 'width=device-width, initial-scale=1',
       },
       {
-        title: 'TanStack Start Starter',
+        title: META_TITLE,
       },
+      {
+        name: 'description',
+        content: META_DESCRIPTION,
+      },
+      {
+        name: 'keywords',
+        content: META_KEYWORDS,
+      },
+      {
+        rel: 'canonical',
+        href: META_URL,
+      },
+      ...META_CONTENT,
+      ...OPEN_GRAPH_META,
+      ...TWITTER_META,
     ],
     links: [
       {
         rel: 'stylesheet',
         href: appCss,
       },
+      ...META_ICONS,
+      ...GOOGLE_FONTS,
     ],
   }),
 

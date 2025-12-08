@@ -1,8 +1,9 @@
 import { Link } from '@tanstack/react-router'
-import { Headphones, Heart, Home, Library, Plus, Search } from 'lucide-react'
+import { Heart, Home, Library, Plus, Search } from 'lucide-react'
 
-import { env } from '~/env'
 import { cn } from '~/lib/utils'
+
+import BrandLogo from './site/brand-logo'
 
 interface SidebarProps {
   className?: string
@@ -27,12 +28,7 @@ export function Sidebar({ className }: SidebarProps) {
     <aside className={cn('bg-sidebar flex h-full w-64 flex-col', className)}>
       {/* Logo */}
       <div className="p-6">
-        <div className="flex items-center gap-2">
-          <div className="bg-primary flex h-10 w-10 items-center justify-center rounded-full">
-            <Headphones className="text-primary-foreground h-5 w-5" />
-          </div>
-          <span className="text-foreground text-xl font-bold">{env.VITE_APP_NAME}</span>
-        </div>
+        <BrandLogo />
       </div>
 
       {/* Main Navigation */}

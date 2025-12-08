@@ -1,13 +1,12 @@
 import { Link } from '@tanstack/react-router'
-import { Headphones } from 'lucide-react'
 
 import { env } from '~/env'
 
 export default function BrandLogo() {
   return (
     <Link to="/" className="flex items-center gap-2">
-      <div className="bg-primary flex h-10 w-10 items-center justify-center rounded-full">
-        <Headphones className="text-primary-foreground h-5 w-5" />
+      <div className="flex h-8 w-8 items-center justify-center">
+        <img src="/static/images/brand-logo.png" alt="brand-logo" />
       </div>
       <span className="text-foreground text-xl font-bold">{env.VITE_APP_NAME}</span>
     </Link>
