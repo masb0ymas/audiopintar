@@ -1,4 +1,5 @@
 import { Link } from '@tanstack/react-router'
+import React from 'react'
 
 import BrandLogo from '~/components/block/site/brand-logo'
 import { env } from '~/env'
@@ -33,22 +34,24 @@ export default function PublicFooter() {
         <div className="flex flex-col items-center justify-between gap-6 md:flex-row">
           <BrandLogo />
           <div className="text-muted-foreground flex items-center gap-8 text-sm">
-            {footers.map((item) =>
-              !item.external ? (
-                <Link to={item.href} className="hover:text-foreground transition-colors">
-                  {item.name}
-                </Link>
-              ) : (
-                <a
-                  href={item.href}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="hover:text-foreground transition-colors"
-                >
-                  {item.name}
-                </a>
-              ),
-            )}
+            {footers.map((item) => (
+              <React.Fragment key={item.name}>
+                {!item.external ? (
+                  <Link to={item.href} className="hover:text-foreground transition-colors">
+                    {item.name}
+                  </Link>
+                ) : (
+                  <a
+                    href={item.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="hover:text-foreground transition-colors"
+                  >
+                    {item.name}
+                  </a>
+                )}
+              </React.Fragment>
+            ))}
           </div>
           <p className="text-muted-foreground text-sm">
             &copy; {new Date().getFullYear()} {env.VITE_APP_NAME}. All rights reserved.
