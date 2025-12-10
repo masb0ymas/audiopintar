@@ -52,8 +52,8 @@ export default function FAQ() {
           <Accordion type="single" collapsible className="w-full" defaultValue="item-1">
             {faqs.map((faq, index) => (
               <AccordionItem key={index} value={faq.id}>
-                <AccordionTrigger className='text-base'>{faq.question}</AccordionTrigger>
-                <AccordionContent className="flex flex-col gap-4 text-balance text-base">
+                <AccordionTrigger className="text-base">{faq.question}</AccordionTrigger>
+                <AccordionContent className="text-muted-foreground flex flex-col gap-4 text-base">
                   <p>{faq.answer}</p>
                 </AccordionContent>
               </AccordionItem>

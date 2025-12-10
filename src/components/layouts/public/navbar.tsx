@@ -41,11 +41,11 @@ export default function PublicNavbar() {
         {/* Desktop Buttons */}
         <div className="hidden items-center gap-3 md:flex">
           <Button variant="outline" className="text-muted-foreground hover:text-foreground" asChild>
-            <Link to="/">Sign In</Link>
+            <Link to="/login">Sign In</Link>
           </Button>
 
           <Button className="bg-primary hover:bg-primary/90 text-primary-foreground" asChild>
-            <Link to="/">Start Free Trial</Link>
+            <Link to="/register">Start Free Trial</Link>
           </Button>
         </div>
 
@@ -99,12 +99,12 @@ export default function PublicNavbar() {
                   className="text-muted-foreground hover:text-foreground"
                   asChild
                 >
-                  <Link to="/" onClick={handleNavClick}>
+                  <Link to="/login" onClick={handleNavClick}>
                     Sign In
                   </Link>
                 </Button>
                 <Button className="bg-primary hover:bg-primary/90 text-primary-foreground" asChild>
-                  <Link to="/" onClick={handleNavClick}>
+                  <Link to="/register" onClick={handleNavClick}>
                     Start Free Trial
                   </Link>
                 </Button>

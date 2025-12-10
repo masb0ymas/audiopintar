@@ -23,7 +23,7 @@ export default function Hero() {
           <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Button
               size="lg"
-              className="bg-primary hover:bg-primary/90 text-primary-foreground h-14 gap-2 px-8 text-lg"
+              className="bg-primary hover:bg-primary/90 text-primary-foreground h-12 gap-2 px-8 text-lg"
               asChild
             >
               <Link to="/">
@@ -35,7 +35,7 @@ export default function Hero() {
             <Button
               size="lg"
               variant="outline"
-              className="border-border hover:bg-secondary h-14 gap-2 px-8 text-lg"
+              className="border-border hover:bg-secondary h-12 gap-2 px-8 text-lg"
               asChild
             >
               <Link to="/">

@@ -16,6 +16,8 @@ import { Route as publicsiteIndexRouteImport } from './routes/(public)/(site)/in
 import { Route as protectedPlaylistIndexRouteImport } from './routes/(protected)/playlist/index'
 import { Route as protectedHomeIndexRouteImport } from './routes/(protected)/home/index'
 import { Route as protectedAudioIndexRouteImport } from './routes/(protected)/audio/index'
+import { Route as authRegisterIndexRouteImport } from './routes/(auth)/register/index'
+import { Route as authLoginIndexRouteImport } from './routes/(auth)/login/index'
 import { Route as protectedPlaylistIdIndexRouteImport } from './routes/(protected)/playlist/$id/index'
 import { Route as protectedAudioIdIndexRouteImport } from './routes/(protected)/audio/$id/index'
 
@@ -53,6 +55,16 @@ const protectedAudioIndexRoute = protectedAudioIndexRouteImport.update({
   path: '/audio/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const authRegisterIndexRoute = authRegisterIndexRouteImport.update({
+  id: '/(auth)/register/',
+  path: '/register/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const authLoginIndexRoute = authLoginIndexRouteImport.update({
+  id: '/(auth)/login/',
+  path: '/login/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const protectedPlaylistIdIndexRoute =
   protectedPlaylistIdIndexRouteImport.update({
     id: '/(protected)/playlist/$id/',
@@ -66,6 +78,8 @@ const protectedAudioIdIndexRoute = protectedAudioIdIndexRouteImport.update({
 } as any)
 
 export interface FileRoutesByFullPath {
+  '/login': typeof authLoginIndexRoute
+  '/register': typeof authRegisterIndexRoute
   '/audio': typeof protectedAudioIndexRoute
   '/home': typeof protectedHomeIndexRoute
   '/playlist': typeof protectedPlaylistIndexRoute
@@ -76,6 +90,8 @@ export interface FileRoutesByFullPath {
   '/playlist/$id': typeof protectedPlaylistIdIndexRoute
 }
 export interface FileRoutesByTo {
+  '/login': typeof authLoginIndexRoute
+  '/register': typeof authRegisterIndexRoute
   '/audio': typeof protectedAudioIndexRoute
   '/home': typeof protectedHomeIndexRoute
   '/playlist': typeof protectedPlaylistIndexRoute
@@ -88,6 +104,8 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/(public)': typeof publicRouteRouteWithChildren
+  '/(auth)/login/': typeof authLoginIndexRoute
+  '/(auth)/register/': typeof authRegisterIndexRoute
   '/(protected)/audio/': typeof protectedAudioIndexRoute
   '/(protected)/home/': typeof protectedHomeIndexRoute
   '/(protected)/playlist/': typeof protectedPlaylistIndexRoute
@@ -100,6 +118,8 @@ export interface FileRoutesById {
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
+    | '/login'
+    | '/register'
     | '/audio'
     | '/home'
     | '/playlist'
@@ -110,6 +130,8 @@ export interface FileRouteTypes {
     | '/playlist/$id'
   fileRoutesByTo: FileRoutesByTo
   to:
+    | '/login'
+    | '/register'
     | '/audio'
     | '/home'
     | '/playlist'
@@ -121,6 +143,8 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/(public)'
+    | '/(auth)/login/'
+    | '/(auth)/register/'
     | '/(protected)/audio/'
     | '/(protected)/home/'
     | '/(protected)/playlist/'
@@ -133,6 +157,8 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   publicRouteRoute: typeof publicRouteRouteWithChildren
+  authLoginIndexRoute: typeof authLoginIndexRoute
+  authRegisterIndexRoute: typeof authRegisterIndexRoute
   protectedAudioIndexRoute: typeof protectedAudioIndexRoute
   protectedHomeIndexRoute: typeof protectedHomeIndexRoute
   protectedPlaylistIndexRoute: typeof protectedPlaylistIndexRoute
@@ -191,6 +217,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof protectedAudioIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/(auth)/register/': {
+      id: '/(auth)/register/'
+      path: '/register'
+      fullPath: '/register'
+      preLoaderRoute: typeof authRegisterIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/(auth)/login/': {
+      id: '/(auth)/login/'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof authLoginIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/(protected)/playlist/$id/': {
       id: '/(protected)/playlist/$id/'
       path: '/playlist/$id'
@@ -226,6 +266,8 @@ const publicRouteRouteWithChildren = publicRouteRoute._addFileChildren(
 
 const rootRouteChildren: RootRouteChildren = {
   publicRouteRoute: publicRouteRouteWithChildren,
+  authLoginIndexRoute: authLoginIndexRoute,
+  authRegisterIndexRoute: authRegisterIndexRoute,
   protectedAudioIndexRoute: protectedAudioIndexRoute,
   protectedHomeIndexRoute: protectedHomeIndexRoute,
   protectedPlaylistIndexRoute: protectedPlaylistIndexRoute,
