@@ -26,7 +26,7 @@ export default function Hero() {
               className="bg-primary hover:bg-primary/90 text-primary-foreground h-12 gap-2 px-8 text-lg"
               asChild
             >
-              <Link to="/">
+              <Link to="/login">
                 <Play className="h-5 w-5 fill-current" />
                 <span>Start Free Trial</span>
               </Link>

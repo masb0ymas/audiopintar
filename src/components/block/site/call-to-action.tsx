@@ -18,10 +18,10 @@ export default function CallToAction() {
           </p>
           <Button
             size="lg"
-            className="bg-primary hover:bg-primary/90 text-primary-foreground h-14 gap-2 px-8 text-lg"
+            className="bg-primary hover:bg-primary/90 text-primary-foreground h-12 gap-2 px-8 text-lg"
             asChild
           >
-            <Link to="/">
+            <Link to="/login">
               <span>Start Your Free Trial</span>
               <ArrowRight className="h-5 w-5" />
             </Link>
