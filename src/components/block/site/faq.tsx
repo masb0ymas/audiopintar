@@ -1,3 +1,5 @@
+import { Element } from 'react-scroll'
+
 import {
   Accordion,
   AccordionContent,
@@ -40,7 +42,7 @@ export default function FAQ() {
   ]
 
   return (
-    <section id="faq" className="bg-secondary/30 px-6 py-20">
+    <Element name="faq" id="faq" className="bg-secondary/30 px-6 py-20">
       <div className="mx-auto max-w-3xl">
         <div className="mb-16 text-center">
           <h2 className="text-foreground mb-4 text-4xl font-bold">
@@ -61,6 +63,6 @@ export default function FAQ() {
           </Accordion>
         </div>
       </div>
-    </section>
+    </Element>
   )
 }

@@ -1,4 +1,5 @@
 import { Star } from 'lucide-react'
+import { Element } from 'react-scroll'
 
 export default function Testimonials() {
   const testimonials = [
@@ -29,7 +30,7 @@ export default function Testimonials() {
   ]
 
   return (
-    <section id="testimonials" className="bg-secondary/30 px-6 py-20">
+    <Element name="testimonials" id="testimonials" className="bg-secondary/30 px-6 py-20">
       <div className="mx-auto max-w-7xl">
         <div className="mb-16 text-center">
           <h2 className="text-foreground mb-4 text-4xl font-bold">
@@ -63,6 +64,6 @@ export default function Testimonials() {
           ))}
         </div>
       </div>
-    </section>
+    </Element>
   )
 }

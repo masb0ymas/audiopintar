@@ -1,4 +1,5 @@
 import { BookOpen, Brain, Clock, Mic2, Shield, Sparkles } from 'lucide-react'
+import { Element } from 'react-scroll'
 
 export default function Features() {
   const features = [
@@ -41,7 +42,7 @@ export default function Features() {
   ]
 
   return (
-    <section id="features" className="bg-secondary/30 px-6 py-20">
+    <Element name="features" id="features" className="bg-secondary/30 px-6 py-20">
       <div className="mx-auto max-w-7xl">
         <div className="mb-16 text-center">
           <h2 className="text-foreground mb-4 text-4xl font-bold">
@@ -66,6 +67,6 @@ export default function Features() {
           ))}
         </div>
       </div>
-    </section>
+    </Element>
   )
 }

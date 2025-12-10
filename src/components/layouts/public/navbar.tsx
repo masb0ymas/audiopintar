@@ -1,20 +1,67 @@
-import { Link } from '@tanstack/react-router'
+import { Link, useRouter } from '@tanstack/react-router'
 import { Menu, X } from 'lucide-react'
 import { AnimatePresence, motion } from 'motion/react'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { scroller } from 'react-scroll'
 
 import BrandLogo from '~/components/block/site/brand-logo'
 import { Button } from '~/components/ui/button'
 
 export default function PublicNavbar() {
+  const { state, navigate } = useRouter()
+  const pathname = state.location.pathname
+
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   const navLinks = [
-    { href: '#features', label: 'Features' },
-    { href: '#pricing', label: 'Pricing' },
-    { href: '#testimonials', label: 'Reviews' },
-    { href: '#faq', label: 'FAQ' },
+    { href: '#', scroll_target: 'features', label: 'Features' },
+    { href: '#', scroll_target: 'pricing', label: 'Pricing' },
+    { href: '#', scroll_target: 'testimonials', label: 'Reviews' },
+    { href: '#', scroll_target: 'faq', label: 'FAQ' },
   ]
+
+  const handleNavigation = async (item: (typeof navLinks)[0]) => {
+    if (item.href === '#') {
+      if (pathname !== '/') {
+        const targetScroll = item.scroll_target
+
+        // Store target in sessionStorage
+        sessionStorage.setItem('scroll_target', targetScroll)
+
+        // Navigate to home
+        navigate({ to: '/' })
+      } else {
+        scroller.scrollTo(item.scroll_target, {
+          duration: 500,
+          smooth: true,
+          offset: -70,
+        })
+      }
+    } else {
+      navigate({ to: item.href })
+    }
+  }
+
+  useEffect(() => {
+    // Check if we have a stored scroll target when on home page
+    if (pathname === '/') {
+      const targetScroll = sessionStorage.getItem('scroll_target')
+
+      if (targetScroll) {
+        // Clear the stored target
+        sessionStorage.removeItem('scroll_target')
+
+        // Scroll to target after a short delay to ensure content is loaded
+        setTimeout(() => {
+          scroller.scrollTo(targetScroll, {
+            duration: 500,
+            smooth: true,
+            offset: -90,
+          })
+        }, 100)
+      }
+    }
+  }, [pathname])
 
   const handleNavClick = () => {
     setMobileMenuOpen(false)
@@ -27,15 +74,29 @@ export default function PublicNavbar() {
 
         {/* Desktop Navigation */}
         <div className="hidden items-center gap-8 md:flex">
-          {navLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className="text-muted-foreground hover:text-foreground transition-colors"
-            >
-              {link.label}
-            </a>
-          ))}
+          {navLinks.map((item, index) => {
+            if (item.href === '#') {
+              return (
+                <div
+                  key={index}
+                  onClick={() => handleNavigation(item)}
+                  className="text-muted-foreground hover:text-foreground cursor-pointer transition-colors"
+                >
+                  {item.label}
+                </div>
+              )
+            }
+
+            return (
+              <Link
+                key={index}
+                to={item.href}
+                className="text-muted-foreground hover:text-foreground transition-colors"
+              >
+                {item.label}
+              </Link>
+            )
+          })}
         </div>
 
         {/* Desktop Buttons */}
@@ -75,19 +136,39 @@ export default function PublicNavbar() {
               transition={{ duration: 0.3, ease: 'easeOut' }}
               className="mx-auto max-w-7xl space-y-1 px-6 py-4"
             >
-              {navLinks.map((link, index) => (
-                <motion.a
-                  key={link.href}
-                  href={link.href}
-                  onClick={handleNavClick}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.3, delay: index * 0.1 }}
-                  className="text-muted-foreground hover:text-foreground hover:bg-muted block rounded-lg px-4 py-3 transition-colors"
-                >
-                  {link.label}
-                </motion.a>
-              ))}
+              {navLinks.map((item, index) => {
+                if (item.href === '#') {
+                  return (
+                    <motion.div
+                      key={index}
+                      onClick={() => {
+                        handleNavClick()
+                        handleNavigation(item)
+                      }}
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.3, delay: index * 0.1 }}
+                      className="text-muted-foreground hover:text-foreground hover:bg-muted block rounded-lg px-4 py-3 transition-colors"
+                    >
+                      {item.label}
+                    </motion.div>
+                  )
+                }
+
+                return (
+                  <motion.a
+                    key={index}
+                    href={item.href}
+                    onClick={handleNavClick}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.3, delay: index * 0.1 }}
+                    className="text-muted-foreground hover:text-foreground hover:bg-muted block rounded-lg px-4 py-3 transition-colors"
+                  >
+                    {item.label}
+                  </motion.a>
+                )
+              })}
               <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}

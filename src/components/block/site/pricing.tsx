@@ -1,5 +1,6 @@
 import { Link } from '@tanstack/react-router'
 import { Check } from 'lucide-react'
+import { Element } from 'react-scroll'
 
 import { Button } from '~/components/ui/button'
 
@@ -52,7 +53,7 @@ export default function Pricing() {
   ]
 
   return (
-    <section id="pricing" className="px-6 py-20">
+    <Element name="pricing" id="pricing" className="px-6 py-20">
       <div className="mx-auto max-w-7xl">
         <div className="mb-16 text-center">
           <h2 className="text-foreground mb-4 text-4xl font-bold">
@@ -108,6 +109,6 @@ export default function Pricing() {
           ))}
         </div>
       </div>
-    </section>
+    </Element>
   )
 }
