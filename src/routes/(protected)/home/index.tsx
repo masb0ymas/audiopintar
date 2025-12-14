@@ -1,13 +1,13 @@
 import { createFileRoute } from '@tanstack/react-router'
 
-import { CategorySection } from '~/components/block/category-section'
 import Loading from '~/components/block/common/loading'
 import NotFound from '~/components/block/common/not-found'
-import { ContinueListening } from '~/components/block/continue-listening'
-import { Header } from '~/components/block/header'
-import { HeroSection } from '~/components/block/hero-section'
-import { PlayerBar } from '~/components/block/player-bar'
-import { Sidebar } from '~/components/block/sidebar'
+import { CategorySection } from '~/components/block/home/category-section'
+import { ContinueListening } from '~/components/block/home/continue-listening'
+import { Header } from '~/components/block/home/header'
+import { HeroSection } from '~/components/block/home/hero-section'
+import { PlayerBar } from '~/components/block/home/player-bar'
+import { Sidebar } from '~/components/block/home/sidebar'
 
 export const Route = createFileRoute('/(protected)/home/')({
   component: RouteComponent,
@@ -151,6 +151,25 @@ function RouteComponent() {
     },
   ]
 
+  const playlist = [
+    {
+      id: '13',
+      title: "Can't Hurt Me",
+      author: 'David Goggins',
+      cover: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=300&h=300&fit=crop',
+      src: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
+      duration: '13h 37m',
+    },
+    {
+      id: '14',
+      title: 'The 7 Habits',
+      author: 'Stephen Covey',
+      cover: 'https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=300&h=300&fit=crop',
+      src: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
+      duration: '13h 4m',
+    },
+  ]
+
   return (
     <div className="bg-background flex h-screen overflow-hidden">
       {/* Sidebar */}
@@ -172,7 +191,7 @@ function RouteComponent() {
         </div>
 
         {/* Player Bar */}
-        <PlayerBar />
+        <PlayerBar playlist={playlist} />
       </div>
     </div>
   )

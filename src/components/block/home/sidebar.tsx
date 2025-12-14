@@ -3,7 +3,7 @@ import { Heart, Home, Library, Plus, Search } from 'lucide-react'
 
 import { cn } from '~/lib/utils'
 
-import BrandLogo from './site/brand-logo'
+import BrandLogo from '../site/brand-logo'
 
 interface SidebarProps {
   className?: string

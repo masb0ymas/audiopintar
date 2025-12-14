@@ -3,8 +3,8 @@ import { ArrowLeft, Clock, Heart, MoreHorizontal, Play } from 'lucide-react'
 
 import Loading from '~/components/block/common/loading'
 import NotFound from '~/components/block/common/not-found'
-import { PlayerBar } from '~/components/block/player-bar'
-import { Sidebar } from '~/components/block/sidebar'
+import { PlayerBar } from '~/components/block/home/player-bar'
+import { Sidebar } from '~/components/block/home/sidebar'
 import { Button } from '~/components/ui/button'
 
 export const Route = createFileRoute('/(protected)/playlist/$id/')({

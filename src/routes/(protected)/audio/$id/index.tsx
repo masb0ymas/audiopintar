@@ -4,7 +4,7 @@ import { ArrowLeft, BookOpen, Clock, Headphones, Play, Star } from 'lucide-react
 import AIAnalysis from '~/components/block/audio/ai-analysis'
 import Loading from '~/components/block/common/loading'
 import NotFound from '~/components/block/common/not-found'
-import { PlayerBar } from '~/components/block/player-bar'
+import { PlayerBar } from '~/components/block/home/player-bar'
 import { Button } from '~/components/ui/button'
 
 export const Route = createFileRoute('/(protected)/audio/$id/')({

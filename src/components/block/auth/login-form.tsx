@@ -1,4 +1,4 @@
-import { Link } from '@tanstack/react-router'
+import { Link, useRouter } from '@tanstack/react-router'
 import React from 'react'
 
 import { Button } from '~/components/ui/button'
@@ -16,8 +16,11 @@ import { cn } from '~/lib/utils'
 import PasswordInput from '../form/password-input'
 
 export default function LoginForm({ className, ...props }: React.ComponentProps<'div'>) {
+  const router = useRouter()
+
   const handleLoginWithGoogle = () => {
-    console.log('Login with Google')
+    // TODO: Implement actual login logic
+    router.navigate({ to: '/home' })
   }
 
   return (
