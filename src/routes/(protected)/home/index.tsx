@@ -158,7 +158,7 @@ function RouteComponent() {
       author: 'David Goggins',
       cover: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=300&h=300&fit=crop',
       src: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
-      duration: '13h 37m',
+      duration: 372.2,
     },
     {
       id: '14',
@@ -166,7 +166,7 @@ function RouteComponent() {
       author: 'Stephen Covey',
       cover: 'https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=300&h=300&fit=crop',
       src: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
-      duration: '13h 4m',
+      duration: 372.2,
     },
   ]
 

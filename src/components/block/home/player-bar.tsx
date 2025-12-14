@@ -10,7 +10,7 @@ import {
   Volume2,
   VolumeX,
 } from 'lucide-react'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 
 import { Slider } from '~/components/ui/slider'
 import { cn } from '~/lib/utils'
@@ -18,6 +18,7 @@ import { cn } from '~/lib/utils'
 interface PlaylistProps {
   title: string
   src: string
+  duration: number
 }
 
 interface PlayerBarProps {
@@ -27,15 +28,17 @@ interface PlayerBarProps {
 
 export function PlayerBar({ playlist, className }: PlayerBarProps) {
   const audioRef = useRef<HTMLAudioElement>(null)
+  const [currentTrack, setCurrentTrack] = useState(0)
+
+  const currentAudio = useMemo(() => playlist[currentTrack], [currentTrack])
 
   const [isPlaying, setIsPlaying] = useState(false)
   const [isMuted, setIsMuted] = useState(false)
   const [isShuffle, setIsShuffle] = useState(false)
 
-  const [duration, setDuration] = useState(0)
+  const [duration, setDuration] = useState(currentAudio.duration)
   const [currentTime, setCurrentTime] = useState(0)
   const [volume, setVolume] = useState(100)
-  const [currentTrack, setCurrentTrack] = useState(0)
 
   useEffect(() => {
     const audio = audioRef.current
@@ -58,9 +61,32 @@ export function PlayerBar({ playlist, className }: PlayerBarProps) {
   }, [])
 
   const handleKeydown = (e: KeyboardEvent) => {
-    if (e.key === ' ') togglePlay()
-    if (e.key === 'ArrowLeft') handlePrevious()
-    if (e.key === 'ArrowRight') handleNext()
+    e.preventDefault()
+
+    console.log(e.key)
+
+    switch (e.key) {
+      case ' ':
+        togglePlay()
+        break
+      case 'm':
+        toggleMute()
+        break
+      case 'ArrowUp':
+        handleVolume(volume + 1)
+        break
+      case 'ArrowDown':
+        handleVolume(volume - 1)
+        break
+      case 'ArrowLeft':
+        handlePrevious()
+        break
+      case 'ArrowRight':
+        handleNext()
+        break
+      default:
+        return
+    }
   }
 
   const togglePlay = () => {
@@ -164,7 +190,7 @@ export function PlayerBar({ playlist, className }: PlayerBarProps) {
         </button>
       </div>
 
-      <audio ref={audioRef} src={playlist[currentTrack].src} />
+      <audio ref={audioRef} src={currentAudio.src} />
 
       {/* Playback Controls */}
       <div className="flex max-w-2xl flex-1 flex-col items-center gap-2">
