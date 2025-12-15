@@ -3,6 +3,7 @@ import { useState } from 'react'
 
 import { Button } from '~/components/ui/button'
 import { Input } from '~/components/ui/input'
+import MarkdownReader from '~/components/ui/markdown-reader'
 
 interface AIAnalysisProps {
   summary: string
@@ -43,36 +44,7 @@ export default function AIAnalysis({ summary }: AIAnalysisProps) {
         <div className="flex-1 overflow-y-auto p-6">
           <div className="prose prose-invert prose-sm max-w-none">
             <div className="text-muted-foreground leading-relaxed whitespace-pre-wrap">
-              {summary.split('\n').map((line, index) => {
-                if (line.startsWith('**') && line.endsWith('**')) {
-                  return (
-                    <h3 key={index} className="text-foreground mt-4 mb-2 font-semibold">
-                      {line.replace(/\*\*/g, '')}
-                    </h3>
-                  )
-                }
-                if (line.startsWith('**')) {
-                  const parts = line.split('**')
-                  return (
-                    <p key={index} className="mb-1">
-                      <strong className="text-foreground">{parts[1]}</strong>
-                      {parts[2]}
-                    </p>
-                  )
-                }
-                if (line.trim().startsWith('-')) {
-                  return (
-                    <p key={index} className="mb-1 ml-4">
-                      {line}
-                    </p>
-                  )
-                }
-                return line ? (
-                  <p key={index} className="mb-2">
-                    {line}
-                  </p>
-                ) : null
-              })}
+              <MarkdownReader markdown={summary} />
             </div>
           </div>
         </div>

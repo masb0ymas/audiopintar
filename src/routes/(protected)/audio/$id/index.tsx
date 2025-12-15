@@ -40,7 +40,18 @@ const audiobooksData: Record<string, AudiobookData> = {
     releaseYear: 2018,
     chapters: 20,
     description: `No matter your goals, Atomic Habits offers a proven framework for improving—every day. James Clear, one of the world"s leading experts on habit formation, reveals practical strategies that will teach you exactly how to form good habits, break bad ones, and master the tiny behaviors that lead to remarkable results. No matter your goals, Atomic Habits offers a proven framework for improving—every day. James Clear, one of the world"s leading experts on habit formation, reveals practical strategies that will teach you exactly how to form good habits, break bad ones, and master the tiny behaviors that lead to remarkable results. No matter your goals, Atomic Habits offers a proven framework for improving—every day. James Clear, one of the world"s leading experts on habit formation, reveals practical strategies that will teach you exactly how to form good habits, break bad ones, and master the tiny behaviors that lead to remarkable results. No matter your goals, Atomic Habits offers a proven framework for improving—every day. James Clear, one of the world"s leading experts on habit formation, reveals practical strategies that will teach you exactly how to form good habits, break bad ones, and master the tiny behaviors that lead to remarkable results.`,
-    aiSummary: `**Key Insights from Atomic Habits:**\n\n1. **The 1% Rule**: Small improvements compound over time. Getting 1% better each day results in being 37 times better by the end of the year.\n\n2. **Four Laws of Behavior Change**:\n   - Make it Obvious\n   - Make it Attractive\n   - Make it Easy\n   - Make it Satisfying\n\n3. **Identity-Based Habits**: Focus on who you want to become, not what you want to achieve. Every action is a vote for the type of person you wish to be.\n\n4. **Environment Design**: Your environment shapes your behavior more than motivation. Design your spaces to make good habits inevitable.\n\n5. **Habit Stacking**: Link new habits to existing ones using the formula: 'After I [CURRENT HABIT], I will [NEW HABIT].'\n\n**Bottom Line**: Success is the product of daily habits, not once-in-a-lifetime transformations. Focus on systems, not goals.`,
+    aiSummary: `**Key Insights from Atomic Habits:**
+1. **The 1% Rule**: Small improvements compound over time. Getting 1% better each day results in being 37 times better by the end of the year.
+2. **Four Laws of Behavior Change**:
+- Make it Obvious
+- Make it Attractive
+- Make it Easy
+- Make it Satisfying
+3. **Identity-Based Habits**: Focus on who you want to become, not what you want to achieve. Every action is a vote for the type of person you wish to be.
+4. **Environment Design**: Your environment shapes your behavior more than motivation. Design your spaces to make good habits inevitable.
+5. **Habit Stacking**: Link new habits to existing ones using the formula: 'After I [CURRENT HABIT], I will [NEW HABIT].'
+
+**Bottom Line**: Success is the product of daily habits, not once-in-a-lifetime transformations. Focus on systems, not goals.`,
   },
   '2': {
     title: 'The Psychology of Money',
@@ -53,7 +64,14 @@ const audiobooksData: Record<string, AudiobookData> = {
     releaseYear: 2020,
     chapters: 20,
     description: `Doing well with money isn't necessarily about what you know. It's about how you behave. And behavior is hard to teach, even to really smart people. Morgan Housel shares 19 short stories exploring the strange ways people think about money.`,
-    aiSummary: `**Key Insights from The Psychology of Money:**\n\n1. **No One's Crazy**: Everyone makes financial decisions based on their unique experiences. What seems irrational to you makes perfect sense to them.\n\n2. **Luck & Risk**: Success involves both skill and luck. Be humble about your wins and compassionate about others' failures.\n\n3. **Never Enough**: The hardest financial skill is getting the goalpost to stop moving. Knowing "enough" is essential.\n\n4. **Compounding Magic**: Warren Buffett's success isn't just skill—it's time. He's been investing for 80+ years.\n\n5. **Room for Error**: Plan for things going wrong. A margin of safety is the only effective way to navigate uncertainty.\n\n**Bottom Line**: Financial success is more about behavior than intelligence. Wealth is what you don't spend.`,
+    aiSummary: `**Key Insights from The Psychology of Money:**
+1. **No One's Crazy**: Everyone makes financial decisions based on their unique experiences. What seems irrational to you makes perfect sense to them.
+2. **Luck & Risk**: Success involves both skill and luck. Be humble about your wins and compassionate about others' failures.
+3. **Never Enough**: The hardest financial skill is getting the goalpost to stop moving. Knowing "enough" is essential.
+4. **Compounding Magic**: Warren Buffett's success isn't just skill—it's time. He's been investing for 80+ years.
+5. **Room for Error**: Plan for things going wrong. A margin of safety is the only effective way to navigate uncertainty.
+
+**Bottom Line**: Financial success is more about behavior than intelligence. Wealth is what you don't spend.`,
   },
   '3': {
     title: 'Deep Work',
@@ -66,7 +84,18 @@ const audiobooksData: Record<string, AudiobookData> = {
     releaseYear: 2016,
     chapters: 14,
     description: `Deep work is the ability to focus without distraction on a cognitively demanding task. Cal Newport argues that deep work is becoming rare and increasingly valuable in our economy.`,
-    aiSummary: `**Key Insights from Deep Work:**\n\n1. **Deep Work Hypothesis**: The ability to perform deep work is becoming increasingly rare at exactly the same time it is becoming increasingly valuable.\n\n2. **Shallow Work Trap**: Most knowledge workers spend their days in a frenzied blur of email and social media—shallow work that adds little value.\n\n3. **Four Strategies**:\n   - Monastic: Eliminate all distractions\n   - Bimodal: Dedicate long stretches to deep work\n   - Rhythmic: Build daily rituals\n   - Journalistic: Fit it in when you can\n\n4. **Embrace Boredom**: Train your brain to resist distraction. Schedule distraction time instead of focus time.\n\n5. **Quit Social Media**: Apply the craftsman approach—only use tools that substantially help your key activities.\n\n**Bottom Line**: To produce at your peak level, you need to work for extended periods with full concentration on a single task free from distraction.`,
+    aiSummary: `**Key Insights from Deep Work:**
+1. **Deep Work Hypothesis**: The ability to perform deep work is becoming increasingly rare at exactly the same time it is becoming increasingly valuable.
+2. **Shallow Work Trap**: Most knowledge workers spend their days in a frenzied blur of email and social media—shallow work that adds little value.
+3. **Four Strategies**:
+- Monastic: Eliminate all distractions
+- Bimodal: Dedicate long stretches to deep work
+- Rhythmic: Build daily rituals
+- Journalistic: Fit it in when you can
+4. **Embrace Boredom**: Train your brain to resist distraction. Schedule distraction time instead of focus time.
+5. **Quit Social Media**: Apply the craftsman approach—only use tools that substantially help your key activities.
+
+**Bottom Line**: To produce at your peak level, you need to work for extended periods with full concentration on a single task free from distraction.`,
   },
 }
 
@@ -84,6 +113,25 @@ const defaultAudiobook = {
   description: 'No description available.',
   aiSummary: 'No summary available for this audiobook.',
 }
+
+const playlist = [
+  {
+    id: '13',
+    title: "Can't Hurt Me",
+    author: 'David Goggins',
+    cover: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=300&h=300&fit=crop',
+    src: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
+    duration: 372.2,
+  },
+  {
+    id: '14',
+    title: 'The 7 Habits',
+    author: 'Stephen Covey',
+    cover: 'https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=300&h=300&fit=crop',
+    src: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
+    duration: 372.2,
+  },
+]
 
 function RouteComponent() {
   const { id } = Route.useParams()
@@ -182,7 +230,7 @@ function RouteComponent() {
         </div>
       </main>
       <div className="fixed right-0 bottom-0 left-0 z-40">
-        <PlayerBar />
+        <PlayerBar playlist={playlist} />
       </div>
     </div>
   )
