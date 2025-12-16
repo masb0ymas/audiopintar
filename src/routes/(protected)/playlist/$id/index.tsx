@@ -155,6 +155,25 @@ const playlistsData: Record<string, Playlist> = {
   },
 }
 
+const mockPlaylist = [
+  {
+    id: '13',
+    title: "Can't Hurt Me",
+    author: 'David Goggins',
+    cover: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=300&h=300&fit=crop',
+    src: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
+    duration: 372.2,
+  },
+  {
+    id: '14',
+    title: 'The 7 Habits',
+    author: 'Stephen Covey',
+    cover: 'https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=300&h=300&fit=crop',
+    src: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
+    duration: 372.2,
+  },
+]
+
 function RouteComponent() {
   const { id } = Route.useParams()
   const playlist = playlistsData[id || 'liked-audiobooks']
@@ -273,7 +292,7 @@ function RouteComponent() {
           </div>
         </div>
 
-        <PlayerBar />
+        <PlayerBar playlist={mockPlaylist} />
       </main>
     </div>
   )
